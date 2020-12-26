@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //Enemy kullanıcı pozisyonunu alıp ona doğru yönelicek
+
+    private GameObject Player;
+    public float speed = 5f;
     void Start()
     {
-        
+        //find gameobject with tag player
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        float step = speed * Time.deltaTime; // calculate distance to move
+        transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position),0.2f);
+
     }
 }
