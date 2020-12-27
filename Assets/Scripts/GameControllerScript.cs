@@ -1,18 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameControllerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject Player;
+    private static int HP;
+
+    public Text HPbarText; //Change it later
     void Start()
     {
-        
+        //set level and get level
+        saveLevel(0); //TEST INITIALLY SET LEVEL TO 0 WHEN BEGINING OF THE GAME
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        //Handle Player HP Bar
+        HP = PlayerScript.HP; //get HP value from PlayerScript
+        HPbarText.text = HP.ToString();
+
+
+
+
     }
+
+    public void saveLevel(int level)
+    {
+        PlayerPrefs.SetInt("Level", level);
+        Debug.Log("Level:" + level);
+    }
+
 }
