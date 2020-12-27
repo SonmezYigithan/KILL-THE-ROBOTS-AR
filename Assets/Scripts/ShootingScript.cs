@@ -16,20 +16,9 @@ public class ShootingScript : MonoBehaviour
             if(hit.transform.name == "Enemy")
             {
                 Destroy(hit.transform.gameObject);
+                //Can azaltılacak
                 Instantiate(smoke, hit.point, Quaternion.LookRotation(hit.normal));
             }
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -70,6 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   HP: 0
+  maxHP: 0
+  healthBarUI: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!136 &1023463530
 CapsuleCollider:
   m_ObjectHideFlags: 0
