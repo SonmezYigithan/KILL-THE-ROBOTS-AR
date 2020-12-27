@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -8,7 +9,12 @@ public class EnemyScript : MonoBehaviour
 
     private GameObject Player;
     public float speed = 5f;
-    public int HP;
+    public float HP;
+
+    //HP BAR
+    public float maxHP;
+    public GameObject healthBarUI;
+    public Slider slider;
 
     void Start()
     {
@@ -19,6 +25,7 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         MoveTowardsToThePlayer();
+        EnemyHealthBarHandle();
     }
 
     void MoveTowardsToThePlayer()
@@ -40,5 +47,28 @@ public class EnemyScript : MonoBehaviour
 
         //play death animation
 
+    }
+
+    float CalculateHealth()
+    {
+        return HP / maxHP;
+    }
+
+    void EnemyHealthBarHandle()
+    {
+        slider.value = CalculateHealth();
+
+        if (HP < maxHP)
+        {
+            healthBarUI.SetActive(true);
+        }
+        if (HP <= 0)
+        {
+            Destroy(gameObject);
+        }
+        if (HP > maxHP)
+        {
+            HP = maxHP;
+        }
     }
 }

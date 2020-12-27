@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameControllerScript : MonoBehaviour
 {
     public GameObject Player;
-    private static int HP;
+    private static float HP;
 
     public Text HPbarText; //Change it later
     void Start()

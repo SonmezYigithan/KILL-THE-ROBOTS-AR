@@ -20,24 +20,29 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        slider.value = CalculateHealth(); 
         
-        if(health < maxHealth)
-        {
-            healthBarUI.SetActive(true);
-        } 
-        if(health <= 0)
-        {
-            Destroy(gameObject);
-        }
-        if(health > maxHealth)
-        {
-            health = maxHealth;
-        }
     }
 
     float CalculateHealth()
     {
         return health / maxHealth; 
+    }
+
+    void EnemyHealthBarHandle()
+    {
+        slider.value = CalculateHealth();
+
+        if (health < maxHealth)
+        {
+            healthBarUI.SetActive(true);
+        }
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
     }
 }
