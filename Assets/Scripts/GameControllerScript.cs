@@ -9,10 +9,24 @@ public class GameControllerScript : MonoBehaviour
     private static float HP;
 
     public Text HPbarText; //Change it later
+    public Text LevelTxt;
+
+    int currentLevel;
     void Start()
     {
-        //set level and get level
-        saveLevel(0); //TEST INITIALLY SET LEVEL TO 0 WHEN BEGINING OF THE GAME
+        //LOAD SYSTEM
+        if (!PlayerPrefs.HasKey("Level"))
+        {
+            saveLevel(0); //INITIALLY SET LEVEL TO 0 WHEN BEGINING OF THE GAME
+            Debug.Log("Level initially is set to 0");
+            LevelTxt.text = "Level 0";
+        }
+        else
+        {
+            currentLevel = getLevel();
+            Debug.Log("Level is set to " + currentLevel);
+        }
+        
     }
 
     void Update()
@@ -30,6 +44,11 @@ public class GameControllerScript : MonoBehaviour
     {
         PlayerPrefs.SetInt("Level", level);
         Debug.Log("Level:" + level);
+    }
+
+    public int getLevel()
+    {
+        return PlayerPrefs.GetInt("Level");
     }
 
 }

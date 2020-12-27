@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    /* THIS SCRIPT IS MARGED INTO GAMECONTROLLER AND IS UNUSED NOW 
+     * değiştirmek isterseniz Yigithan'a yazın
+     */
+
     public float health;
     public float maxHealth;
     public GameObject healthBarUI;
     public Slider slider;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         health = maxHealth;

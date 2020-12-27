@@ -25,7 +25,11 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         MoveTowardsToThePlayer();
-        EnemyHealthBarHandle();
+        if (healthBarUI)
+        {
+            EnemyHealthBarHandle();
+        }
+        
     }
 
     void MoveTowardsToThePlayer()
@@ -45,7 +49,7 @@ public class EnemyScript : MonoBehaviour
         Debug.Log("Enemy Destroy");
         Destroy(gameObject);
 
-        //play death animation
+        //play Player get hit animation
 
     }
 
