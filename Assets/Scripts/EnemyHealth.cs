@@ -20,16 +20,6 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    float CalculateHealth()
-    {
-        return health / maxHealth; 
-    }
-
-    void EnemyHealthBarHandle()
-    {
         slider.value = CalculateHealth();
 
         if (health < maxHealth)
@@ -45,4 +35,11 @@ public class EnemyHealth : MonoBehaviour
             health = maxHealth;
         }
     }
+
+
+    float CalculateHealth()
+    {
+        return health / maxHealth;
+    }
+
 }
