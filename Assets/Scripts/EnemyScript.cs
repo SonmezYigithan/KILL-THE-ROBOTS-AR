@@ -8,6 +8,8 @@ public class EnemyScript : MonoBehaviour
 
     private GameObject Player;
     public float speed = 5f;
+    public int HP;
+
     void Start()
     {
         //find gameobject with tag player
@@ -16,9 +18,27 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
+        MoveTowardsToThePlayer();
+    }
+
+    void MoveTowardsToThePlayer()
+    {
+        
         float step = speed * Time.deltaTime; // calculate distance to move
+        Vector3 relativePos = Player.transform.position - transform.position;
+        //move towards to the player
         transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position),0.2f);
+        //turn towards to the player
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(relativePos, Vector3.up), 0.2f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //delete enemy object
+        Debug.Log("Enemy Destroy");
+        Destroy(gameObject);
+
+        //play death animation
 
     }
 }
