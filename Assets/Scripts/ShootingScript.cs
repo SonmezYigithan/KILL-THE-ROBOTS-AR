@@ -13,7 +13,7 @@ public class ShootingScript : MonoBehaviour
 
         if (Physics.Raycast(arCamera.transform.position, arCamera.transform.forward, out hit))
         {
-            if (hit.transform.name == "Enemy")
+            if (hit.transform.tag == "Enemy")
             {
                 Destroy(hit.transform.gameObject);
 

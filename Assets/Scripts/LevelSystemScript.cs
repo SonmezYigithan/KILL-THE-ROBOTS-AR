@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameControllerScript : MonoBehaviour
+public class LevelSystemScript : MonoBehaviour
 {
+    /***** THIS SCRIPT INSIDE GAMECONTROLLER OBJ
+     * *** TODO ****
+     * her levelda olması gereken enemy sayısını tut
+     * 
+     */
+
     public GameObject Player;
     private static float HP;
 
-    public Text HPbarText; //Change it later
     public Text LevelTxt;
 
     int currentLevel;
+    int currentLevelEnemyNumber;
+
     void Start()
     {
         //LOAD SYSTEM
@@ -26,20 +33,13 @@ public class GameControllerScript : MonoBehaviour
             currentLevel = getLevel();
             Debug.Log("Level is set to " + currentLevel);
         }
-        
     }
 
     void Update()
     {
-        /***** Handle Player HP Bar ******
-        HP = PlayerScript.HP; //get HP value from PlayerScript
-        HPbarText.text = HP.ToString();
-        */
-
-
-
-
+        
     }
+
 
     public void saveLevel(int level)
     {
@@ -51,5 +51,4 @@ public class GameControllerScript : MonoBehaviour
     {
         return PlayerPrefs.GetInt("Level");
     }
-
 }
