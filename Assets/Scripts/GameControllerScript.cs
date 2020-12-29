@@ -31,10 +31,10 @@ public class GameControllerScript : MonoBehaviour
 
     void Update()
     {
-        //Handle Player HP Bar
+        /***** Handle Player HP Bar ******
         HP = PlayerScript.HP; //get HP value from PlayerScript
         HPbarText.text = HP.ToString();
-
+        */
 
 
 

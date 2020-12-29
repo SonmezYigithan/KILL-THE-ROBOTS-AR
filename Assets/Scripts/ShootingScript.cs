@@ -17,21 +17,11 @@ public class ShootingScript : MonoBehaviour
             {
                 Destroy(hit.transform.gameObject);
 
-                // Direk destroy etmeden iki,üç vuruşta ölsün
+                // Direkt destroy etmeden iki,üç vuruşta ölsün
+
+                //*****EXPLOSION ANIMATON****
                 Instantiate(smoke, hit.point, Quaternion.LookRotation(hit.normal));
             }
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
