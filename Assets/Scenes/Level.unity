@@ -2228,8 +2228,8 @@ MonoBehaviour:
   PanelWinLevel: {fileID: 1988557556}
   spawnScriptObj: {fileID: 1374668218}
   waitTime: 3
-  MaxNumofEnemies: 30
-  spawnAtATime: 3
+  MaxNumofEnemies: 10
+  spawnAtATime: 5
 --- !u!1 &1633206548
 GameObject:
   m_ObjectHideFlags: 0

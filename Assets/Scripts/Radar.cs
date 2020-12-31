@@ -24,16 +24,14 @@ public class Radar : MonoBehaviour
 
     public static void RemoveRadarObject(GameObject gameObject)
     {
-        /*
-        foreach (RadarObject radarObject in RadarObjects)
+        for (int i = 0; i < RadarObjects.Count; i++)
         {
-            if (radarObject.Owner == gameObject)
+            if (RadarObjects[i].Owner == gameObject)
             {
-                Destroy(radarObject.Icon);
-                RadarObjects.Remove(radarObject);
+                Destroy(RadarObjects[i].Icon);
+                RadarObjects.Remove(RadarObjects[i]);
             }
         }
-        */
     }
 
     private void DrawRadarDots()
@@ -51,13 +49,6 @@ public class Radar : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         DrawRadarDots();
