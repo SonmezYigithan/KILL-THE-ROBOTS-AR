@@ -15,4 +15,9 @@ public class ButtonScript : MonoBehaviour
         Debug.Log("PLAYER HAS QUITTED");
         Application.Quit();
     }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

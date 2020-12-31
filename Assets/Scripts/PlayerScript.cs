@@ -5,22 +5,14 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     public static int HP = 100;
+    public static int DamageAmount = 10;
 
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    public static int DamagedCount=0;
 
     private void OnCollisionEnter(Collision collision)
     {
-        //decrease HP
-        HP -= 10;
-        Debug.Log(HP + "HP");
+        //decrease HP when collide with something
+        HP -= DamageAmount;
+        DamagedCount++;
     }
 }
