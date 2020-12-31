@@ -70,6 +70,7 @@ public class GameControllerScript : MonoBehaviour
         /***** Handle Level Text ******/
         LevelTxt.text = "Level "+currentLevel.ToString();
 
+        /**** Kalan Enemy Sayısı Hesaplanıyor 0 dan küçükse win ekranı geliyor ya da boss *****/
         if ((MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount) <= 0)
         {
             SpawnBoss();
@@ -80,7 +81,6 @@ public class GameControllerScript : MonoBehaviour
         {
             GameOverMenu();
         }
-
         
         HPBar.GetComponent<Image>().fillAmount = HP / 100;
 

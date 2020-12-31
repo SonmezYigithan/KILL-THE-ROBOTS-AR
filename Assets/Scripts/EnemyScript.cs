@@ -46,9 +46,10 @@ public class EnemyScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //delete enemy object
+        //OKAN, tam burda destroy edildikten sonra can paketi Instantiate edecek
+        //random 0-100 random atıp 0 ile 30 arasında ise paket düşür
         if (collision.collider.name == "Player")
         {
-            Debug.Log("Enemy Destroy");
             Destroy(gameObject);
         }
         
