@@ -46,8 +46,12 @@ public class EnemyScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //delete enemy object
-        Debug.Log("Enemy Destroy");
-        Destroy(gameObject);
+        if (collision.collider.name == "Player")
+        {
+            Debug.Log("Enemy Destroy");
+            Destroy(gameObject);
+        }
+        
 
         //play Player get hit animation
 

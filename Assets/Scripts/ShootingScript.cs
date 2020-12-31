@@ -7,6 +7,8 @@ public class ShootingScript : MonoBehaviour
     public GameObject arCamera;
     public GameObject smoke;
 
+    public static int EnemiesKilled = 0;
+
     public void Shoot()
     {
         RaycastHit hit;
@@ -16,6 +18,8 @@ public class ShootingScript : MonoBehaviour
             if (hit.transform.tag == "Enemy")
             {
                 Destroy(hit.transform.gameObject);
+
+                EnemiesKilled++;
 
                 // Direkt destroy etmeden iki,üç vuruşta ölsün
 

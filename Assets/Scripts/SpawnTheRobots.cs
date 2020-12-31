@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SpawnTheRobots : MonoBehaviour
 {
     [SerializeField] GameObject RobotPrefab;
     [SerializeField] GameObject ARCamera;
     [SerializeField] float Distance;
-    private List<GameObject> Robots;
+    public static int currentNumberOfEnemies;
+    public static List<GameObject> Robots;
+    private List<string> InstatiatePosition;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Robots = new List<GameObject>();
-        SpawnRobot("PositiveX_PositiveZ", Distance);
-        SpawnRobot("NegativeX_PositiveZ", Distance);
-        SpawnRobot("NegativeX_NegativeZ", Distance);
-        SpawnRobot("PositiveX_NegativeZ", Distance);
-    }
+    
+
+    private bool startspawnbool;
+
 
     private void SpawnRobot(string XZ, float distance)
     {
@@ -53,9 +51,30 @@ public class SpawnTheRobots : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator StartSpawning(float waitTime, int MaxNumofEnemies, int spawnAtATime)
     {
-        
+        // NumofEnemis Sayısı kadar total robot spawnlar
+        // spawnAtATime her waitTime da spawnlanacak robot sayısı
+        Robots = new List<GameObject>();
+        for (int i = 0; i < MaxNumofEnemies / spawnAtATime; i++)
+        {
+            for (int j = 0; j < spawnAtATime; j++) // spawnAtATime = 4
+            {
+                //get random position
+                var list = new List<string> { "PositiveX_PositiveZ", "NegativeX_PositiveZ", "NegativeX_NegativeZ", "PositiveX_NegativeZ" };
+                int randindex = Random.Range(0, list.Count);
+
+                SpawnRobot(list[randindex], Distance);
+            }
+            yield return new WaitForSeconds(waitTime);
+        }
+        Robots.Clear(); //clears list
     }
+
+    public void StartSpawnCoroutine(int MaxNumofEnemies, float waitTime, int spawnAtATime)
+    {
+        currentNumberOfEnemies = MaxNumofEnemies;
+        StartCoroutine(StartSpawning(waitTime, currentNumberOfEnemies, spawnAtATime));
+    }
+
 }

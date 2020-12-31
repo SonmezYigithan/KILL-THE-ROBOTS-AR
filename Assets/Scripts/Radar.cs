@@ -24,23 +24,16 @@ public class Radar : MonoBehaviour
 
     public static void RemoveRadarObject(GameObject gameObject)
     {
-        List<RadarObject> newList = new List<RadarObject>();
-
-        for (int i = 0; i < RadarObjects.Count; i++)
+        /*
+        foreach (RadarObject radarObject in RadarObjects)
         {
-            if(RadarObjects[i].Owner == gameObject)
+            if (radarObject.Owner == gameObject)
             {
-                Destroy(RadarObjects[i].Icon);
-                continue;
+                Destroy(radarObject.Icon);
+                RadarObjects.Remove(radarObject);
             }
-            else
-            {
-                newList.Add(RadarObjects[i]);
-            }
-
-            RadarObjects.RemoveRange(0, RadarObjects.Count);
-            RadarObjects.AddRange(newList);
         }
+        */
     }
 
     private void DrawRadarDots()
