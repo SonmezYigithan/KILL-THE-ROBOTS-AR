@@ -8,11 +8,12 @@ public class GameControllerScript : MonoBehaviour
 {
     public GameObject Player;
     private static float HP;
+    private static int HealthAmount = 30;
 
     public GameObject HPBar;
     public Text LevelTxt;
     public Text EnemiesLeftText;
-    private bool levelchange = true;
+    private bool levelchange = false;
     int currentLevel;
     int currentBOSS;
 
@@ -36,7 +37,10 @@ public class GameControllerScript : MonoBehaviour
     {
         //spawnScript Instance oluştur
         SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
+    }
 
+    public void StartTheGame()
+    {
         //LOAD SYSTEM
         if (!PlayerPrefs.HasKey("Level"))
         {
@@ -55,8 +59,6 @@ public class GameControllerScript : MonoBehaviour
 
             SpawnRobots();
         }
-
-
     }
 
     void Update()
@@ -161,6 +163,18 @@ public class GameControllerScript : MonoBehaviour
     public int getLevel()
     {
         return PlayerPrefs.GetInt("Level");
+    }
+
+    public static void HitHealthPotion()
+    {
+        if(PlayerScript.HP <= (100 - HealthAmount))
+        {
+            PlayerScript.HP += HealthAmount;
+        }
+        else
+        {
+            PlayerScript.HP = 100;
+        }
     }
 
     /**************** DEBUG FUNCTIONS ***********/

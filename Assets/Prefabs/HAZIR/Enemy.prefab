@@ -829,6 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1448586074397026660, guid: cab78ca89b5edf143a4b2ad37d8f3df2, type: 3}
+  type: robot
 --- !u!136 &2623044167907615507
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -6,11 +6,13 @@ using UnityEngine;
 public class SpawnTheRobots : MonoBehaviour
 {
     [SerializeField] GameObject RobotPrefab;
+    [SerializeField] GameObject HealthPotionPrefab;
     [SerializeField] GameObject ARCamera;
     [SerializeField] float Distance;
     public static int currentNumberOfEnemies;
     public static List<GameObject> Robots;
     private List<string> InstatiatePosition;
+    public int HealthPotionSpawnPercentage;
 
     
 
@@ -49,6 +51,15 @@ public class SpawnTheRobots : MonoBehaviour
         GameObject robot = Instantiate(RobotPrefab, robotPosition, Quaternion.identity);
         Robots.Add(robot);
 
+    }
+
+    public void SpawnHealthPotion(Transform transform)
+    {
+        if(Random.Range(1, 100) <= HealthPotionSpawnPercentage)
+        {
+            Vector3 healthPotionPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            GameObject healthPotion = Instantiate(HealthPotionPrefab, healthPotionPosition, Quaternion.identity);
+        }
     }
 
     private IEnumerator StartSpawning(float waitTime, int MaxNumofEnemies, int spawnAtATime)
