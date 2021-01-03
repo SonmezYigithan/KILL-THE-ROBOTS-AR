@@ -26,6 +26,10 @@ public class ShootingScript : MonoBehaviour
                 //*****EXPLOSION ANIMATON****
                 Instantiate(smoke, hit.point, Quaternion.LookRotation(hit.normal));
             }
+            else if(hit.transform.tag == "Health Potion")
+            {
+                Destroy(hit.transform.gameObject);
+            }
         }
     }
 }
