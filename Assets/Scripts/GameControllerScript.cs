@@ -95,6 +95,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void LevelScaling()
     {
+        /**** DAHA BITMEDI ****/
         if (getLevel() == 2)
         {
             MaxNumofEnemies = 40;
@@ -110,6 +111,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void SpawnBoss()
     {
+        /**** DAHA BITMEDI ****/
         if( currentBOSS == 1 )
         {
             //Spawn BOSS1
@@ -124,12 +126,14 @@ public class GameControllerScript : MonoBehaviour
     {
         PanelGameOver.SetActive(true);
         //show Score
+        //oyunu dondur
     }
 
     private void WinLevelMenu()
     {
         PanelWinLevel.SetActive(true);
         //show Score
+        //oyunu dondur
     }
 
     public void LevelContinueButton()
@@ -139,13 +143,16 @@ public class GameControllerScript : MonoBehaviour
         currentLevel++;
         saveLevel(currentLevel);
         LevelScaling();
+        //oyunun time scale başlat
     }
 
     public void LevelRetryButton()
     {
         PanelGameOver.SetActive(false);
         PlayerScript.HP = 100;
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("Level"); // bu kötü bir yöntem
+        //Sahnedeki o andaki tüm robotlar potionlar yok edilmeli ( Eğer kalıyorsa )
+        //oyunun time scale başlat
     }
 
     private void SpawnRobots()
