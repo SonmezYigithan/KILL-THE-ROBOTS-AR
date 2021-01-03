@@ -816,6 +816,10 @@ MonoBehaviour:
   maxHP: 100
   healthBarUI: {fileID: 0}
   slider: {fileID: 0}
+  imageEnemyOnRadar: {fileID: 1448586074397026660, guid: cab78ca89b5edf143a4b2ad37d8f3df2, type: 3}
+  imageHealthPotionOnRadar: {fileID: 1448586074397026660, guid: 9e9eabde227f0e5479cefbf5419e7b5d, type: 3}
+  type: robot
+  spawnTheRobots: {fileID: 0}
 --- !u!114 &6669351794463919907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1448586074397026660, guid: cab78ca89b5edf143a4b2ad37d8f3df2, type: 3}
   type: robot
+  spawnTheRobots: {fileID: 0}
 --- !u!136 &2623044167907615507
 CapsuleCollider:
   m_ObjectHideFlags: 0

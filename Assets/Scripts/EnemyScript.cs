@@ -16,6 +16,10 @@ public class EnemyScript : MonoBehaviour
     public GameObject healthBarUI;
     public Slider slider;
 
+    //spawn
+    public string type;
+    [SerializeField] SpawnTheRobots SpawnTheRobots;
+
     void Start()
     {
         //find gameobject with tag player
@@ -30,6 +34,20 @@ public class EnemyScript : MonoBehaviour
             EnemyHealthBarHandle();
         }
         
+    }
+
+    private void OnDestroy()
+    {
+        Radar.RemoveRadarObject(this.gameObject);
+
+        if (type == "robot")
+        {
+            SpawnTheRobots.SpawnHealthPotion(this.gameObject.transform);
+        }
+        else if (type == "health potion")
+        {
+            GameControllerScript.HitHealthPotion();
+        }
     }
 
     void MoveTowardsToThePlayer()
