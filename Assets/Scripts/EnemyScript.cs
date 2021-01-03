@@ -18,12 +18,16 @@ public class EnemyScript : MonoBehaviour
 
     //spawn
     public string type;
-    [SerializeField] SpawnTheRobots SpawnTheRobots;
+
+    GameObject spawnScriptObj;
+    SpawnTheRobots SpawnScript;
 
     void Start()
     {
         //find gameobject with tag player
         Player = GameObject.FindGameObjectWithTag("Player");
+        spawnScriptObj = GameObject.FindGameObjectWithTag("SpawnEdge");
+        SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
     }
 
     void Update()
@@ -42,7 +46,7 @@ public class EnemyScript : MonoBehaviour
 
         if (type == "robot")
         {
-            SpawnTheRobots.SpawnHealthPotion(this.gameObject.transform);
+            SpawnScript.SpawnHealthPotion(this.gameObject.transform);
         }
         else if (type == "health potion")
         {

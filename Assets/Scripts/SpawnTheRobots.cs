@@ -22,7 +22,7 @@ public class SpawnTheRobots : MonoBehaviour
     private void SpawnRobot(string XZ, float distance)
     {
         float x = 0;
-        float y = ARCamera.transform.position.y;
+        float y = ARCamera.transform.position.y - 0.5f;
         float z = 0;
 
         if (XZ == "PositiveX_PositiveZ")
