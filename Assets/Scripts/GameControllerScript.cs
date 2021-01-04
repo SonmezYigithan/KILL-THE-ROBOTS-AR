@@ -184,6 +184,11 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     /**************** DEBUG FUNCTIONS ***********/
 
 
