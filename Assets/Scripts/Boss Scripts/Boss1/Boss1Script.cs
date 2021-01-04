@@ -5,9 +5,11 @@ using UnityEngine;
 public class Boss1Script : MonoBehaviour
 {
     // BOSS 1
-    // player etrafında dönecek ( Container döndür )
+    // Boss canı handle la
     // belli süre aralıklarıyla ataş edecek 
     // random animasyonlar olacak
+
+    public static int Boss1_HP;
 
 
     void Start()
