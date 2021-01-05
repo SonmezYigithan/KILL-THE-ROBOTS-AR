@@ -6,11 +6,13 @@ using UnityEngine;
 public class SpawnTheRobots : MonoBehaviour
 {
     [SerializeField] GameObject RobotPrefab;
+    [SerializeField] GameObject HealthPotionPrefab;
     [SerializeField] GameObject ARCamera;
     [SerializeField] float Distance;
     public static int currentNumberOfEnemies;
-    public static List<GameObject> Robots;
+    public static List<GameObject> Robots = new List<GameObject>();
     private List<string> InstatiatePosition;
+    public int HealthPotionSpawnPercentage;
 
     
 
@@ -20,7 +22,7 @@ public class SpawnTheRobots : MonoBehaviour
     private void SpawnRobot(string XZ, float distance)
     {
         float x = 0;
-        float y = ARCamera.transform.position.y;
+        float y = ARCamera.transform.position.y - 0.5f;
         float z = 0;
 
         if (XZ == "PositiveX_PositiveZ")
@@ -51,11 +53,20 @@ public class SpawnTheRobots : MonoBehaviour
 
     }
 
+    public void SpawnHealthPotion(Transform transform)
+    {
+        if(Random.Range(1, 100) <= HealthPotionSpawnPercentage)
+        {
+            Vector3 healthPotionPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            GameObject healthPotion = Instantiate(HealthPotionPrefab, healthPotionPosition, Quaternion.identity);
+        }
+    }
+
     private IEnumerator StartSpawning(float waitTime, int MaxNumofEnemies, int spawnAtATime)
     {
         // NumofEnemis Sayısı kadar total robot spawnlar
         // spawnAtATime her waitTime da spawnlanacak robot sayısı
-        Robots = new List<GameObject>();
+        //Robots = new List<GameObject>();
         for (int i = 0; i < MaxNumofEnemies / spawnAtATime; i++)
         {
             for (int j = 0; j < spawnAtATime; j++) // spawnAtATime = 4
@@ -68,13 +79,22 @@ public class SpawnTheRobots : MonoBehaviour
             }
             yield return new WaitForSeconds(waitTime);
         }
-        Robots.Clear(); //clears list
+        //Robots.Clear(); //clears list
     }
 
     public void StartSpawnCoroutine(int MaxNumofEnemies, float waitTime, int spawnAtATime)
     {
         currentNumberOfEnemies = MaxNumofEnemies;
         StartCoroutine(StartSpawning(waitTime, currentNumberOfEnemies, spawnAtATime));
+    }
+
+    public static void KillTheRobotsCheatingButton()
+    {
+        foreach (GameObject robot in Robots)
+        {
+            Destroy(robot);
+            ShootingScript.EnemiesKilled++;
+        }
     }
 
 }

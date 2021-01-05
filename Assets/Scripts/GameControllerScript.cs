@@ -8,11 +8,12 @@ public class GameControllerScript : MonoBehaviour
 {
     public GameObject Player;
     private static float HP;
+    private static int HealthAmount = 30;
 
     public GameObject HPBar;
     public Text LevelTxt;
     public Text EnemiesLeftText;
-    private bool levelchange = true;
+    private bool levelchange = false;
     int currentLevel;
     int currentBOSS;
 
@@ -31,12 +32,15 @@ public class GameControllerScript : MonoBehaviour
 
 
 
-    
+
     void Start()
     {
         //spawnScript Instance oluştur
         SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
+    }
 
+    public void StartTheGame()
+    {
         //LOAD SYSTEM
         if (!PlayerPrefs.HasKey("Level"))
         {
@@ -55,8 +59,6 @@ public class GameControllerScript : MonoBehaviour
 
             SpawnRobots();
         }
-
-
     }
 
     void Update()
@@ -65,23 +67,23 @@ public class GameControllerScript : MonoBehaviour
         HP = PlayerScript.HP;
 
         /***** Handle Enemies Left Text FOR DEBUG ******/
-        EnemiesLeftText.text = "ENEMIES LEFT "+ (MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount ).ToString();
+        EnemiesLeftText.text = "ENEMIES LEFT " + (MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount).ToString();
 
         /***** Handle Level Text ******/
-        LevelTxt.text = "Level "+currentLevel.ToString();
+        LevelTxt.text = "Level " + currentLevel.ToString();
 
+        /**** Kalan Enemy Sayısı Hesaplanıyor 0 dan küçükse win ekranı geliyor ya da boss *****/
         if ((MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount) <= 0)
         {
             SpawnBoss();
             WinLevelMenu();
         }
 
-        if ( HP <= 0)
+        if (HP <= 0)
         {
             GameOverMenu();
         }
 
-        
         HPBar.GetComponent<Image>().fillAmount = HP / 100;
 
         /***** SPAWN ROBOTS *****/
@@ -93,6 +95,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void LevelScaling()
     {
+        /**** DAHA BITMEDI ****/
         if (getLevel() == 2)
         {
             MaxNumofEnemies = 40;
@@ -108,11 +111,12 @@ public class GameControllerScript : MonoBehaviour
 
     private void SpawnBoss()
     {
-        if( currentBOSS == 1 )
+        /**** DAHA BITMEDI ****/
+        if (currentBOSS == 1)
         {
             //Spawn BOSS1
         }
-        else if (currentBOSS == 2 )
+        else if (currentBOSS == 2)
         {
             //Spawn BOSS2
         }
@@ -122,12 +126,14 @@ public class GameControllerScript : MonoBehaviour
     {
         PanelGameOver.SetActive(true);
         //show Score
+        //oyunu dondur
     }
 
     private void WinLevelMenu()
     {
         PanelWinLevel.SetActive(true);
         //show Score
+        //oyunu dondur
     }
 
     public void LevelContinueButton()
@@ -137,18 +143,21 @@ public class GameControllerScript : MonoBehaviour
         currentLevel++;
         saveLevel(currentLevel);
         LevelScaling();
+        //oyunun time scale başlat
     }
 
     public void LevelRetryButton()
     {
         PanelGameOver.SetActive(false);
         PlayerScript.HP = 100;
-        SceneManager.LoadScene("Level");
+        SceneManager.LoadScene("Level"); // bu kötü bir yöntem
+        //Sahnedeki o andaki tüm robotlar potionlar yok edilmeli ( Eğer kalıyorsa )
+        //oyunun time scale başlat
     }
 
     private void SpawnRobots()
     {
-        levelchange = false; 
+        levelchange = false;
         SpawnScript.StartSpawnCoroutine(MaxNumofEnemies, waitTime, spawnAtATime);
     }
 
@@ -161,6 +170,18 @@ public class GameControllerScript : MonoBehaviour
     public int getLevel()
     {
         return PlayerPrefs.GetInt("Level");
+    }
+
+    public static void HitHealthPotion()
+    {
+        if (PlayerScript.HP <= (100 - HealthAmount))
+        {
+            PlayerScript.HP += HealthAmount;
+        }
+        else
+        {
+            PlayerScript.HP = 100;
+        }
     }
 
     /**************** DEBUG FUNCTIONS ***********/

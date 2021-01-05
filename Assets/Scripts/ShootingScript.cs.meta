@@ -3,7 +3,9 @@ guid: edfc5398545ce2844824ce39f79c8fbd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - arCamera: {instanceID: 0}
+  - smoke: {fileID: 1975141522878942813, guid: 1b9f4316433b24e92be0a740990a1e4d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

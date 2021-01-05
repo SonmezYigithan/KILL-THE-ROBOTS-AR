@@ -24,6 +24,10 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
+        if(HP <= 0)
+        {
+            Destroy(gameObject);
+        }
         MoveTowardsToThePlayer();
         if (healthBarUI)
         {
@@ -48,7 +52,6 @@ public class EnemyScript : MonoBehaviour
         //delete enemy object
         if (collision.collider.name == "Player")
         {
-            Debug.Log("Enemy Destroy");
             Destroy(gameObject);
         }
         
