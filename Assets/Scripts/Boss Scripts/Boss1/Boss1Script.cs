@@ -19,6 +19,15 @@ public class Boss1Script : MonoBehaviour
 
     void Update()
     {
+<<<<<<< Updated upstream
+=======
+        Debug.Log("BossHP"+ Boss1_HP);
+        if (Boss1_HP <= 0)
+        {
+            Debug.Log("Boss1 has Died");
+            Destroy(gameObject);
+        }
+>>>>>>> Stashed changes
         
     }
 }
