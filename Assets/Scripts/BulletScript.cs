@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour 
 {
+    public GameObject ARCamera;
     public GameObject bullet;
     public float speed = 100f;
 
@@ -19,8 +20,8 @@ public class BulletScript : MonoBehaviour
 
     void Update()
     {
-        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * speed);
-
+        gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+        
         //mermi Yok etme
         if (lifeTimer >= lifeDuration)
         {

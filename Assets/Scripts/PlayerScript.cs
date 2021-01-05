@@ -48,7 +48,6 @@ public class PlayerScript : MonoBehaviour
         while (true)
         {
             tempARcamera = ARcamera.transform.position;
-            Debug.Log(tempARcamera + ARcamera.transform.position);
             yield return new WaitForSeconds(waitTime);
         }
     }

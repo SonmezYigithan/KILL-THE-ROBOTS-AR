@@ -31,12 +31,14 @@ public class EmmitterScript : MonoBehaviour
 
     public void Shoot()
     {
+        Debug.LogWarning("PointerDOWN");
         animator.SetBool("isShooting", true);
-        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Instantiate(bulletPrefab, transform.position, transform.rotation);
     }
 
     public void ShootanimStop()
     {
+        Debug.LogWarning("PointerUP");
         animator.SetBool("isShooting", false);
     }
 
