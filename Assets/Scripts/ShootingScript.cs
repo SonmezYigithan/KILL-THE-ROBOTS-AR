@@ -12,22 +12,25 @@ public class ShootingScript : MonoBehaviour
 
     public static int EnemiesKilled = 0;
 
+    public GameObject Pistol;
+    private Animator animator;
+
     void Start()
     {
         spawnScriptObj = GameObject.FindGameObjectWithTag("SpawnEdge");
         SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
+        animator = Pistol.GetComponent<Animator>();
     }
+
 
     public void Shoot()
     {
         RaycastHit hit;
-
+        animator.SetBool("isShooting", true);
         if (Physics.Raycast(arCamera.transform.position, arCamera.transform.forward, out hit))
         {
             if (hit.transform.tag == "Enemy")
             {
-                SpawnTheRobots.Robots.Remove(hit.transform.gameObject);
-
                 Destroy(hit.transform.gameObject);
 
                 EnemiesKilled++;
@@ -36,19 +39,22 @@ public class ShootingScript : MonoBehaviour
 
                 //*****EXPLOSION ANIMATON****
                 Instantiate(smoke, hit.point, Quaternion.LookRotation(hit.normal));
-
-                SpawnScript.SpawnHealthPotion(hit.transform);
             }
-            else if(hit.transform.tag == "Health Potion")
+            else if (hit.transform.tag == "Health Potion")
             {
                 Destroy(hit.transform.gameObject);
+
                 GameControllerScript.HitHealthPotion();
             }
-            else if(hit.transform.tag == "Boss1")
+            else if (hit.transform.tag == "Boss1")
             {
-                Boss1Script.Boss1_HP -= 10;
+                Boss1Script.Boss1_HP -= 200;
             }
-
         }
+    }
+
+    public void ShootanimStop()
+    {
+        animator.SetBool("isShooting", false);
     }
 }

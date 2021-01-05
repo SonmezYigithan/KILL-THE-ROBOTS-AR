@@ -451,15 +451,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.042
+      value: 0.075
       objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.34
+      value: -0.339
       objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.198
+      value: 1.12
       objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalRotation.x
@@ -559,6 +559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14395aa451c7ca842a0362e950eb3ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ARcamera: {fileID: 1073411876}
+  waitTime: 0.5
+  Pistol: {fileID: 2093346533}
 --- !u!1 &223701035
 GameObject:
   m_ObjectHideFlags: 0
@@ -2530,7 +2533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &791554135
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4991,7 +4994,6 @@ MonoBehaviour:
   waitTime: 3
   MaxNumofEnemies: 5
   spawnAtATime: 5
-  BOSS1: {fileID: 8906096095610722908, guid: 1a941d92e7902af42b66ecadfcc5936b, type: 3}
 --- !u!1 &1546707934
 GameObject:
   m_ObjectHideFlags: 0
@@ -6141,7 +6143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1953624412
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6780,8 +6782,8 @@ GameObject:
   - component: {fileID: 2070546417}
   - component: {fileID: 2070546421}
   - component: {fileID: 2070546420}
-  - component: {fileID: 2070546419}
   - component: {fileID: 2070546418}
+  - component: {fileID: 2070546419}
   m_Layer: 5
   m_Name: Btn_Shoot
   m_TagString: Untagged
@@ -6823,6 +6825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arCamera: {fileID: 1073411876}
   smoke: {fileID: 1975141522878942813, guid: 1b9f4316433b24e92be0a740990a1e4d, type: 3}
+  Pistol: {fileID: 2093346533}
 --- !u!114 &2070546419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6832,52 +6835,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 2070546416}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2070546420}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2070546418}
-        m_TargetAssemblyTypeName: ShootingScript, Assembly-CSharp
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2070546418}
+          m_TargetAssemblyTypeName: ShootingScript, Assembly-CSharp
+          m_MethodName: Shoot
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2070546418}
+          m_TargetAssemblyTypeName: ShootingScript, Assembly-CSharp
+          m_MethodName: ShootanimStop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &2070546420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6991,6 +6984,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077613249}
   m_CullTransparentMesh: 0
+--- !u!1 &2093346533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7678110091261769483, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
+  m_PrefabInstance: {fileID: 127279747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2104888883
 GameObject:
   m_ObjectHideFlags: 0

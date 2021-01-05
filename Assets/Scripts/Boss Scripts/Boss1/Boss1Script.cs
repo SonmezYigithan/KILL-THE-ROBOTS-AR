@@ -9,16 +9,23 @@ public class Boss1Script : MonoBehaviour
     // belli süre aralıklarıyla ataş edecek 
     // random animasyonlar olacak
 
-    public static int Boss1_HP = 200;
+    public static int Boss1_HP;
 
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        Debug.Log("HPBOSS" + Boss1_HP);
+
+        Debug.Log("BossHP" + Boss1_HP);
+        if (Boss1_HP <= 0)
+        {
+            Debug.Log("Boss1 has Died");
+            Destroy(gameObject);
+        }
+
     }
 }
