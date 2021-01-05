@@ -9,23 +9,10 @@ public class ShootingScript : MonoBehaviour
 
     public static int EnemiesKilled = 0;
 
-<<<<<<< Updated upstream
-=======
-    public GameObject Pistol;
-    private Animator animator;
-
-    void Start()
-    {
-        spawnScriptObj = GameObject.FindGameObjectWithTag("SpawnEdge");
-        SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
-        animator = Pistol.GetComponent<Animator>();
-    }
-
->>>>>>> Stashed changes
     public void Shoot()
     {
         RaycastHit hit;
-        animator.SetBool("isShooting", true);
+
         if (Physics.Raycast(arCamera.transform.position, arCamera.transform.forward, out hit))
         {
             if (hit.transform.tag == "Enemy")
@@ -42,20 +29,7 @@ public class ShootingScript : MonoBehaviour
             else if(hit.transform.tag == "Health Potion")
             {
                 Destroy(hit.transform.gameObject);
-<<<<<<< Updated upstream
-=======
-                GameControllerScript.HitHealthPotion();
-            }
-            else if(hit.transform.tag == "Boss1")
-            {
-                Boss1Script.Boss1_HP -= 200;
->>>>>>> Stashed changes
             }
         }
-    }
-
-    public void ShootanimStop()
-    {
-        animator.SetBool("isShooting", false);
     }
 }
