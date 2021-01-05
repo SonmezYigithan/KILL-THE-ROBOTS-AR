@@ -10,7 +10,7 @@ public class SpawnTheRobots : MonoBehaviour
     [SerializeField] GameObject ARCamera;
     [SerializeField] float Distance;
     public static int currentNumberOfEnemies;
-    public static List<GameObject> Robots;
+    public static List<GameObject> Robots = new List<GameObject>();
     private List<string> InstatiatePosition;
     public int HealthPotionSpawnPercentage;
 
@@ -66,7 +66,7 @@ public class SpawnTheRobots : MonoBehaviour
     {
         // NumofEnemis Sayısı kadar total robot spawnlar
         // spawnAtATime her waitTime da spawnlanacak robot sayısı
-        Robots = new List<GameObject>();
+        //Robots = new List<GameObject>();
         for (int i = 0; i < MaxNumofEnemies / spawnAtATime; i++)
         {
             for (int j = 0; j < spawnAtATime; j++) // spawnAtATime = 4
@@ -79,13 +79,22 @@ public class SpawnTheRobots : MonoBehaviour
             }
             yield return new WaitForSeconds(waitTime);
         }
-        Robots.Clear(); //clears list
+        //Robots.Clear(); //clears list
     }
 
     public void StartSpawnCoroutine(int MaxNumofEnemies, float waitTime, int spawnAtATime)
     {
         currentNumberOfEnemies = MaxNumofEnemies;
         StartCoroutine(StartSpawning(waitTime, currentNumberOfEnemies, spawnAtATime));
+    }
+
+    public static void KillTheRobotsCheatingButton()
+    {
+        foreach (GameObject robot in Robots)
+        {
+            Destroy(robot);
+            ShootingScript.EnemiesKilled++;
+        }
     }
 
 }

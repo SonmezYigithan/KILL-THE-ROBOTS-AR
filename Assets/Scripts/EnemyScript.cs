@@ -16,18 +16,10 @@ public class EnemyScript : MonoBehaviour
     public GameObject healthBarUI;
     public Slider slider;
 
-    //spawn
-    public string type;
-
-    GameObject spawnScriptObj;
-    SpawnTheRobots SpawnScript;
-
     void Start()
     {
         //find gameobject with tag player
         Player = GameObject.FindGameObjectWithTag("Player");
-        spawnScriptObj = GameObject.FindGameObjectWithTag("SpawnEdge");
-        SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
     }
 
     void Update()
@@ -38,20 +30,6 @@ public class EnemyScript : MonoBehaviour
             EnemyHealthBarHandle();
         }
         
-    }
-
-    private void OnDestroy()
-    {
-        Radar.RemoveRadarObject(this.gameObject);
-
-        if (type == "robot")
-        {
-            SpawnScript.SpawnHealthPotion(this.gameObject.transform);
-        }
-        else if (type == "health potion")
-        {
-            GameControllerScript.HitHealthPotion();
-        }
     }
 
     void MoveTowardsToThePlayer()
@@ -68,8 +46,6 @@ public class EnemyScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //delete enemy object
-        //OKAN, tam burda destroy edildikten sonra can paketi Instantiate edecek
-        //random 0-100 random atıp 0 ile 30 arasında ise paket düşür
         if (collision.collider.name == "Player")
         {
             Destroy(gameObject);
