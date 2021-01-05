@@ -497,18 +497,24 @@ PrefabInstance:
       propertyPath: arCamera
       value: 
       objectReference: {fileID: 1073411876}
-    - target: {fileID: 8395484301882081528, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
-      propertyPath: Pistol
-      value: 
-      objectReference: {fileID: 2093346533}
-    m_RemovedComponents:
-    - {fileID: 9021167563737269313, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
 --- !u!4 &127279748 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
   m_PrefabInstance: {fileID: 127279747}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &127279749 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8395484301882081528, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
+  m_PrefabInstance: {fileID: 127279747}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d45c3313629a04a4a8a69ad15cba88da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &156511699
 GameObject:
   m_ObjectHideFlags: 0
@@ -6679,9 +6685,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2093346534}
+        - m_Target: {fileID: 127279749}
           m_TargetAssemblyTypeName: EmmitterScript, Assembly-CSharp
-          m_MethodName: ShootanimStop
+          m_MethodName: Shoot
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6695,9 +6701,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2093346534}
+        - m_Target: {fileID: 127279749}
           m_TargetAssemblyTypeName: EmmitterScript, Assembly-CSharp
-          m_MethodName: Shoot
+          m_MethodName: ShootanimStop
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6825,40 +6831,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7678110091261769483, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
   m_PrefabInstance: {fileID: 127279747}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2093346534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093346533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45c3313629a04a4a8a69ad15cba88da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arCamera: {fileID: 1073411876}
-  Pistol: {fileID: 2093346533}
-  bulletPrefab: {fileID: 2897494390110388638, guid: 0e8f21c86efd4f94aab30b72c2e1b45f, type: 3}
---- !u!95 &2093346535
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093346533}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 49feed3cb04849046927378eb420ddf3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2104888883
 GameObject:
   m_ObjectHideFlags: 0
