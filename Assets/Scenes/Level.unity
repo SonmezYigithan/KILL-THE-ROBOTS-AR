@@ -445,21 +445,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 156511700}
     m_Modifications:
+    - target: {fileID: 869578547, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.977
+      objectReference: {fileID: 0}
+    - target: {fileID: 869578547, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.221
+      objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769483, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.075
+      value: 0.0081
       objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.339
+      value: -0.033
       objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.12
+      value: 0.1324
       objectReference: {fileID: 0}
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalRotation.x
@@ -492,6 +500,18 @@ PrefabInstance:
     - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678110091261769484, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8395484301882081528, guid: 07a747ea20f929f46a537a44992657d2, type: 3}
       propertyPath: arCamera
@@ -6001,7 +6021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1953624412
 RectTransform:
   m_ObjectHideFlags: 0
