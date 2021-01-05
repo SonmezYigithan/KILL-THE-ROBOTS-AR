@@ -10,12 +10,14 @@ public class GameControllerScript : MonoBehaviour
     private static float HP;
     private static int HealthAmount = 30;
 
+    
+
     public GameObject HPBar;
     public Text LevelTxt;
     public Text EnemiesLeftText;
     private bool levelchange = false;
     int currentLevel;
-    int currentBOSS;
+    //int currentBOSS;  SONRASI IÇIN
 
     public GameObject PanelGameOver;
     public GameObject PanelWinLevel;
@@ -30,9 +32,10 @@ public class GameControllerScript : MonoBehaviour
     [Tooltip("Her waitTime değeri arasındaki spawnlanacak enemy sayısı")]
     [SerializeField] private int spawnAtATime; // mesela üst üste 4 enemy doğacak sonra belli bir saniye bekleyecek
 
+    public GameObject BOSS1;
+    Boss1Script bossScript;
+    bool spawnBoss = true;
 
-
-    
     void Start()
     {
         //spawnScript Instance oluştur
@@ -48,7 +51,7 @@ public class GameControllerScript : MonoBehaviour
             saveLevel(1); //INITIALLY SET LEVEL TO 1 WHEN BEGINING OF THE GAME
             Debug.Log("Level initially is set to 1");
             LevelTxt.text = "Level 1";
-            currentBOSS = 1;
+            //currentBOSS = 1;
             SpawnRobots();
 
         }
@@ -71,12 +74,19 @@ public class GameControllerScript : MonoBehaviour
 
         /***** Handle Level Text ******/
         LevelTxt.text = "Level "+currentLevel.ToString();
+        if (Boss1Script.Boss1_HP <= 0)
+        {
+            WinLevelMenu();
+        }
 
         /**** Kalan Enemy Sayısı Hesaplanıyor 0 dan küçükse win ekranı geliyor ya da boss *****/
         if ((MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount) <= 0)
         {
-            SpawnBoss();
-            WinLevelMenu();
+            if (spawnBoss)
+            {
+                SpawnBoss();
+            }
+            
         }
 
         if ( HP <= 0)
@@ -109,27 +119,15 @@ public class GameControllerScript : MonoBehaviour
         if (getLevel() == 2)
         {
             MaxNumofEnemies = 40;
-            currentBOSS = 2;
-        }
-        else if (getLevel() == 3)
-        {
-            MaxNumofEnemies = 50;
-            spawnAtATime = 5;
-            currentBOSS = 3;
+            //currentBOSS = 1;
         }
     }
 
     private void SpawnBoss()
     {
         /**** DAHA BITMEDI ****/
-        if( currentBOSS == 1 )
-        {
-            //Spawn BOSS1
-        }
-        else if (currentBOSS == 2 )
-        {
-            //Spawn BOSS2
-        }
+        spawnBoss = false;
+        Instantiate(BOSS1, Player.transform.position + new Vector3(0,0,3f), Quaternion.identity);
     }
 
     private void GameOverMenu()
@@ -161,6 +159,13 @@ public class GameControllerScript : MonoBehaviour
 
     public void LevelRetryButton()
     {
+        GameObject[] Boss1 = GameObject.FindGameObjectsWithTag("Boss1");
+        foreach (GameObject gameObject in Boss1)
+        {
+            Destroy(gameObject);
+        }
+
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject gameObject in enemies)
         {

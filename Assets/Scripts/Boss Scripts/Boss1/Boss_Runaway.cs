@@ -19,9 +19,6 @@ public class Boss_Runaway : StateMachineBehaviour
         //random uzağa kaç
         var list = new List<string> { "z2.27", "x2.91", "z-2.46", "x-2.37" };
         randindex = Random.Range(0, list.Count);
-
-        Debug.Log(randindex);
-        
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

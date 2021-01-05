@@ -44,6 +44,11 @@ public class ShootingScript : MonoBehaviour
                 Destroy(hit.transform.gameObject);
                 GameControllerScript.HitHealthPotion();
             }
+            else if(hit.transform.tag == "Boss1")
+            {
+                Boss1Script.Boss1_HP -= 10;
+            }
+
         }
     }
 }

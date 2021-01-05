@@ -9,7 +9,7 @@ public class Boss1Script : MonoBehaviour
     // belli süre aralıklarıyla ataş edecek 
     // random animasyonlar olacak
 
-    public static int Boss1_HP;
+    public static int Boss1_HP = 200;
 
 
     void Start()
@@ -19,6 +19,6 @@ public class Boss1Script : MonoBehaviour
 
     void Update()
     {
-        
+        Debug.Log("HPBOSS" + Boss1_HP);
     }
 }
