@@ -7,20 +7,28 @@ public class BulletScript : MonoBehaviour
     public GameObject bullet;
     public float speed = 100f;
 
+    private float lifeTimer= 0;
+    public float lifeDuration = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        //HealthPotion SPAWNLA
+        //SpawnScript.SpawnHealthPotion(hit.transform);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * speed);
+
+        //mermi Yok etme
+        if (lifeTimer >= lifeDuration)
         {
-            GameObject instBullet = Instantiate(bullet, transform.position, Quaternion.identity) as GameObject;
-            Rigidbody instBulletRigidbody = instBullet.GetComponent<Rigidbody>();
-            instBulletRigidbody.AddForce(Vector3.forward * speed);
+            Destroy(gameObject);
         }
+
+        lifeTimer += Time.deltaTime;
+
+        
     }
 }
