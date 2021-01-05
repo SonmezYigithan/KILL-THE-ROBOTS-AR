@@ -7,7 +7,16 @@ public class ShootingScript : MonoBehaviour
     public GameObject arCamera;
     public GameObject smoke;
 
+    GameObject spawnScriptObj;
+    SpawnTheRobots SpawnScript;
+
     public static int EnemiesKilled = 0;
+
+    void Start()
+    {
+        spawnScriptObj = GameObject.FindGameObjectWithTag("SpawnEdge");
+        SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
+    }
 
     public void Shoot()
     {
@@ -17,6 +26,8 @@ public class ShootingScript : MonoBehaviour
         {
             if (hit.transform.tag == "Enemy")
             {
+                SpawnTheRobots.Robots.Remove(hit.transform.gameObject);
+
                 Destroy(hit.transform.gameObject);
 
                 EnemiesKilled++;
@@ -25,11 +36,19 @@ public class ShootingScript : MonoBehaviour
 
                 //*****EXPLOSION ANIMATON****
                 Instantiate(smoke, hit.point, Quaternion.LookRotation(hit.normal));
+
+                SpawnScript.SpawnHealthPotion(hit.transform);
             }
             else if(hit.transform.tag == "Health Potion")
             {
                 Destroy(hit.transform.gameObject);
+                GameControllerScript.HitHealthPotion();
             }
+            else if(hit.transform.tag == "Boss1")
+            {
+                Boss1Script.Boss1_HP -= 10;
+            }
+
         }
     }
 }
