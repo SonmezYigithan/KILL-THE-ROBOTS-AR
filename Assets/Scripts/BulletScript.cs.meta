@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: edfc5398545ce2844824ce39f79c8fbd
+guid: 9277fd52f22f33546be6b099449b4c68
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - arCamera: {instanceID: 0}
-  - smoke: {fileID: 1975141522878942813, guid: 1b9f4316433b24e92be0a740990a1e4d, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
