@@ -864,8 +864,8 @@ GameObject:
   - component: {fileID: 9185256199853622583}
   - component: {fileID: 9089721531161267193}
   m_Layer: 0
-  m_Name: Robo1
-  m_TagString: Untagged
+  m_Name: BOSS1
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

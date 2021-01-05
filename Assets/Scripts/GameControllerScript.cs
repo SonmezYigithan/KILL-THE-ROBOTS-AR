@@ -93,6 +93,16 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
     private void LevelScaling()
     {
         /**** DAHA BITMEDI ****/
@@ -125,6 +135,7 @@ public class GameControllerScript : MonoBehaviour
     private void GameOverMenu()
     {
         PanelGameOver.SetActive(true);
+        PauseGame();
         //show Score
         //oyunu dondur
     }
@@ -132,6 +143,7 @@ public class GameControllerScript : MonoBehaviour
     private void WinLevelMenu()
     {
         PanelWinLevel.SetActive(true);
+        PauseGame();
         //show Score
         //oyunu dondur
     }
@@ -143,14 +155,30 @@ public class GameControllerScript : MonoBehaviour
         currentLevel++;
         saveLevel(currentLevel);
         LevelScaling();
+        ResumeGame();
         //oyunun time scale başlat
     }
 
     public void LevelRetryButton()
     {
-        PanelGameOver.SetActive(false);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject gameObject in enemies)
+        {
+            Destroy(gameObject);
+        }
+
+        GameObject[] potions = GameObject.FindGameObjectsWithTag("Health Potion");
+        foreach (GameObject gameObject in potions)
+        {
+            Destroy(gameObject);
+        }
+
         PlayerScript.HP = 100;
-        SceneManager.LoadScene("Level"); // bu kötü bir yöntem
+        EnemiesLeftText.text = "ENEMIES LEFT " + MaxNumofEnemies;
+        PanelGameOver.SetActive(false);
+        ResumeGame();
+        StartTheGame();
+
         //Sahnedeki o andaki tüm robotlar potionlar yok edilmeli ( Eğer kalıyorsa )
         //oyunun time scale başlat
     }

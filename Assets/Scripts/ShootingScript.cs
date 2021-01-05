@@ -26,6 +26,8 @@ public class ShootingScript : MonoBehaviour
         {
             if (hit.transform.tag == "Enemy")
             {
+                SpawnTheRobots.Robots.Remove(hit.transform.gameObject);
+
                 Destroy(hit.transform.gameObject);
 
                 EnemiesKilled++;
