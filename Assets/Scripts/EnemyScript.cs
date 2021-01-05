@@ -24,6 +24,10 @@ public class EnemyScript : MonoBehaviour
 
     void Update()
     {
+        if(HP <= 0)
+        {
+            Destroy(gameObject);
+        }
         MoveTowardsToThePlayer();
         if (healthBarUI)
         {

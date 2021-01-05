@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootingScript : MonoBehaviour
 {
-    /** SILINECEK ***/
+    /************* SILINECEK ***/
     public GameObject arCamera;
     public GameObject smoke;
 

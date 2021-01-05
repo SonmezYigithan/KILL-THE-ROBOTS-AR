@@ -143,5 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9277fd52f22f33546be6b099449b4c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  ARCamera: {fileID: 0}
+  bullet: {fileID: 2897494390110388638}
   speed: 100
+  lifeDuration: 2
+  DamageToRobot: 25
+  DamageToBoss: 1
+  smoke: {fileID: 0}
