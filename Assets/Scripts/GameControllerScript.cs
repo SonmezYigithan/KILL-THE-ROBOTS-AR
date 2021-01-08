@@ -39,6 +39,7 @@ public class GameControllerScript : MonoBehaviour
     public static int EnemiesKilled;
 
 
+
     void Start()
     {
         //spawnScript Instance oluştur
