@@ -14,16 +14,18 @@ public class Boss1Script : MonoBehaviour
 
     void Start()
     {
-
+        Boss1_HP = 200;
     }
 
     void Update()
     {
 
+
         Debug.Log("BossHP" + Boss1_HP);
         if (Boss1_HP <= 0)
         {
             Debug.Log("Boss1 has Died");
+            
             Destroy(gameObject);
         }
 

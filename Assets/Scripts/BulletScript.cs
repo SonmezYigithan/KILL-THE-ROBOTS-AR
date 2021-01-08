@@ -10,8 +10,6 @@ public class BulletScript : MonoBehaviour
     private float lifeTimer= 0;
     public float lifeDuration = 2.0f;
 
-    public static int EnemiesKilled = 0;
-
     public int DamageToRobot;
     public int DamageToBoss;
     
@@ -48,7 +46,8 @@ public class BulletScript : MonoBehaviour
             
             Destroy(collision.transform.gameObject);
 
-            EnemiesKilled++;
+            GameControllerScript.EnemiesKilled++;
+            
 
             //*****EXPLOSION ANIMATON****
             //Instantiate(smoke, collision.transform.position, Quaternion.LookRotation(ARCamera.transform));

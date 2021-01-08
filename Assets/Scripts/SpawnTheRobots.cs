@@ -93,7 +93,7 @@ public class SpawnTheRobots : MonoBehaviour
         foreach (GameObject robot in Robots)
         {
             Destroy(robot);
-            ShootingScript.EnemiesKilled++;
+            GameControllerScript.EnemiesKilled++;
         }
     }
 

@@ -14,12 +14,17 @@ public class GameControllerScript : MonoBehaviour
     public Text LevelTxt;
     public Text EnemiesLeftText;
     private bool levelchange = false;
-    int currentLevel;
-    int currentBOSS;
 
     public GameObject PanelGameOver;
     public GameObject PanelWinLevel;
 
+    /**** BOSS *****/
+    int currentLevel;
+    int currentBOSS;
+    public GameObject BOSS1;
+    public GameObject BOSS2;
+    bool spawnboss;
+    
     /***** SPAWN SCRIPT ******/
     public GameObject spawnScriptObj;
     SpawnTheRobots SpawnScript;
@@ -30,7 +35,7 @@ public class GameControllerScript : MonoBehaviour
     [Tooltip("Her waitTime değeri arasındaki spawnlanacak enemy sayısı")]
     [SerializeField] private int spawnAtATime; // mesela üst üste 4 enemy doğacak sonra belli bir saniye bekleyecek
 
-
+    public static int EnemiesKilled = 0; // Level geçildiğinde sıfırla
 
 
     void Start()
@@ -48,7 +53,7 @@ public class GameControllerScript : MonoBehaviour
             saveLevel(1); //INITIALLY SET LEVEL TO 1 WHEN BEGINING OF THE GAME
             Debug.Log("Level initially is set to 1");
             LevelTxt.text = "Level 1";
-            currentBOSS = 1;
+            spawnboss = false;
             SpawnRobots();
 
         }
@@ -65,26 +70,32 @@ public class GameControllerScript : MonoBehaviour
     {
         /***** Handle Player HP Bar ******/
         HP = PlayerScript.HP;
+        HPBar.GetComponent<Image>().fillAmount = HP / 100;
 
         /***** Handle Enemies Left Text FOR DEBUG ******/
-        EnemiesLeftText.text = "ENEMIES LEFT " + (MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount).ToString();
+        EnemiesLeftText.text = "ENEMIES LEFT " + (MaxNumofEnemies - EnemiesKilled - PlayerScript.DamagedCount).ToString();
 
         /***** Handle Level Text ******/
         LevelTxt.text = "Level " + currentLevel.ToString();
 
         /**** Kalan Enemy Sayısı Hesaplanıyor 0 dan küçükse win ekranı geliyor ya da boss *****/
-        if ((MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount) <= 0)
+        if ((MaxNumofEnemies - EnemiesKilled - PlayerScript.DamagedCount) <= 0)
         {
-            SpawnBoss();
-            WinLevelMenu();
+            if (spawnboss)
+            {
+                SpawnBoss();
+            }
+            else
+            {
+                WinLevelMenu();
+            }
+
         }
 
         if (HP <= 0)
         {
             GameOverMenu();
         }
-
-        HPBar.GetComponent<Image>().fillAmount = HP / 100;
 
         /***** SPAWN ROBOTS *****/
         if (levelchange)
@@ -114,11 +125,12 @@ public class GameControllerScript : MonoBehaviour
         /**** DAHA BITMEDI ****/
         if (currentBOSS == 1)
         {
-            //Spawn BOSS1
+            Instantiate(BOSS1, Player.transform.position + new Vector3(0, 0, 3f), Player.transform.rotation);
+            spawnboss = false;
         }
         else if (currentBOSS == 2)
         {
-            //Spawn BOSS2
+            //Instantiate(BOSS2, Player.transform.position + new Vector3(0, 0, 3f), Player.transform.rotation);
         }
     }
 
@@ -138,6 +150,9 @@ public class GameControllerScript : MonoBehaviour
 
     public void LevelContinueButton()
     {
+        EnemiesKilled = 0;
+        PlayerScript.DamagedCount = 0;
+
         PanelWinLevel.SetActive(false);
         levelchange = true;
         currentLevel++;
