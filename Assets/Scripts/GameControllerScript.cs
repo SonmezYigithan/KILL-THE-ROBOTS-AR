@@ -19,6 +19,7 @@ public class GameControllerScript : MonoBehaviour
     int bossIndex = 0;
     private int MaxNumofEnemies;
     public static bool IsBossDead = false;
+    private bool SpawnBossBool = true;
 
     public GameObject PanelGameOver;
     public GameObject PanelWinLevel;
@@ -36,7 +37,7 @@ public class GameControllerScript : MonoBehaviour
     [Tooltip("Her waitTime değeri arasındaki spawnlanacak enemy sayısı")]
     [SerializeField] private int spawnAtATime; // mesela üst üste 4 enemy doğacak sonra belli bir saniye bekleyecek
 
-
+    public static int EnemiesKilled = 0;
 
 
     void Start()
@@ -49,7 +50,7 @@ public class GameControllerScript : MonoBehaviour
     public void StartTheLevel()
     {
         ResumeGame();
-        ShootingScript.EnemiesKilled = 0;
+        EnemiesKilled = 0;
         PlayerScript.DamagedCount = 0;
         PlayerScript.HP = 100;
 
@@ -64,7 +65,7 @@ public class GameControllerScript : MonoBehaviour
         {
             currentLevel = GetLevel();
             LevelTxt.text = "Level " + currentLevel.ToString();
-            
+
             LevelScaling();
             SpawnRobots();
         }
@@ -76,33 +77,38 @@ public class GameControllerScript : MonoBehaviour
         HP = PlayerScript.HP;
 
         /***** Handle Enemies Left Text FOR DEBUG ******/
-        EnemiesLeftText.text = "ENEMIES LEFT " + (MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount).ToString();
+        EnemiesLeftText.text = "ENEMIES LEFT " + (MaxNumofEnemies - EnemiesKilled - PlayerScript.DamagedCount).ToString();
 
         /**** Kalan Enemy Sayısı Hesaplanıyor 0 dan küçükse win ekranı geliyor ya da boss *****/
-        if ((MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount) <= 0)
+        if ((MaxNumofEnemies - EnemiesKilled - PlayerScript.DamagedCount) <= 0)
         {
-            if(currentLevel == 1)
+            if (currentLevel == 1)
             {
                 WinLevelMenu();
             }
             else
             {
-                SpawnBoss();
+                if(SpawnBossBool)
+                {
+                    SpawnBoss();
+                    SpawnBossBool = false;
+                }
             }
         }
 
-        if(IsBossDead)
+        if (IsBossDead)
         {
+            SpawnBossBool = true;
             IsBossDead = false;
             if (currentLevel < TotalLevelNumber)
             {
-                bossIndex++;
+                //bossIndex++;
                 WinLevelMenu();
             }
-            else
-            {
-                PanelWonMenu();
-            }
+            //else
+            //{
+            //    PanelWonMenu();
+            //}
 
         }
 
@@ -129,12 +135,16 @@ public class GameControllerScript : MonoBehaviour
         for (int i = 0; i < currentLevel - 1; i++)
         {
             MaxNumofEnemies = MaxNumofEnemiesFirst;
-            MaxNumofEnemies = (int) (MaxNumofEnemies * ((float)(100 + RobotIncreasePercentage) / 100));
+            MaxNumofEnemies = (int)(MaxNumofEnemies * ((float)(100 + RobotIncreasePercentage) / 100));
         }
     }
 
     private void GameOverMenu()
     {
+        EnemiesKilled = 0;
+        PlayerScript.DamagedCount = 0;
+        PlayerScript.HP = 100;
+        PauseGame();
         currentLevel = SetLevel(1);
         SetLevel(1);
         PanelGameOver.SetActive(true);
@@ -144,6 +154,9 @@ public class GameControllerScript : MonoBehaviour
 
     private void WinLevelMenu()
     {
+        EnemiesKilled = 0;
+        PlayerScript.DamagedCount = 0;
+        PlayerScript.HP = 100;
         PauseGame();
         DestroyGameObjects();
         SetLevel(++currentLevel);
@@ -152,7 +165,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void PanelWonMenu()
     {
-        currentLevel = SetLevel(1);
+        //currentLevel = SetLevel(1);
         PanelWon.SetActive(true);
     }
 

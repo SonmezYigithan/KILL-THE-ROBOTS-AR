@@ -51,7 +51,7 @@ public class SpawnTheRobots : MonoBehaviour
 
     public void SpawnHealthPotion(Transform transform)
     {
-        if(Random.Range(1, 100) <= HealthPotionSpawnPercentage)
+        if (Random.Range(1, 100) <= HealthPotionSpawnPercentage)
         {
             Vector3 healthPotionPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             GameObject healthPotion = Instantiate(HealthPotionPrefab, healthPotionPosition, Quaternion.identity);
@@ -62,17 +62,32 @@ public class SpawnTheRobots : MonoBehaviour
     {
         // NumofEnemis Sayısı kadar total robot spawnlar
         // spawnAtATime her waitTime da spawnlanacak robot sayısı
-        for (int i = 0; i < MaxNumofEnemies / spawnAtATime; i++)
-        {
-            for (int j = 0; j < spawnAtATime; j++)
-            {
-                //get random position
-                var list = new List<string> { "PositiveX_PositiveZ", "NegativeX_PositiveZ", "NegativeX_NegativeZ", "PositiveX_NegativeZ" };
-                int randindex = Random.Range(0, list.Count);
 
-                SpawnRobot(list[randindex], Distance, RobotPrefab);
-            }
+        int loopNum = MaxNumofEnemies / spawnAtATime;
+
+        int mod = MaxNumofEnemies % spawnAtATime;
+
+        for (int i = 0; i < loopNum; i++)
+        {
+            SpawnAtATimeFunc(spawnAtATime);
             yield return new WaitForSeconds(waitTime);
+        }
+
+        if(mod > 0)
+        {
+            SpawnAtATimeFunc(mod);
+        }
+    }
+
+    private void SpawnAtATimeFunc(int spawnAtATime)
+    {
+        for (int j = 0; j < spawnAtATime; j++)
+        {
+            //get random position
+            var list = new List<string> { "PositiveX_PositiveZ", "NegativeX_PositiveZ", "NegativeX_NegativeZ", "PositiveX_NegativeZ" };
+            int randindex = Random.Range(0, list.Count);
+
+            SpawnRobot(list[randindex], Distance, RobotPrefab);
         }
     }
 
@@ -102,7 +117,7 @@ public class SpawnTheRobots : MonoBehaviour
         for (int i = 0; i < Robots.Count; i++)
         {
             Destroy(Robots[i].gameObject);
-            ShootingScript.EnemiesKilled++;
+            GameControllerScript.EnemiesKilled++;
         }
         Robots.Clear();
     }
