@@ -7,6 +7,7 @@ public class SpawnTheRobots : MonoBehaviour
 {
     [SerializeField] GameObject RobotPrefab;
     [SerializeField] GameObject HealthPotionPrefab;
+    public GameObject[] BossPrefabs;
     [SerializeField] GameObject ARCamera;
     [SerializeField] float Distance;
     public static int currentNumberOfEnemies;
@@ -14,12 +15,7 @@ public class SpawnTheRobots : MonoBehaviour
     private List<string> InstatiatePosition;
     public int HealthPotionSpawnPercentage;
 
-    
-
-    private bool startspawnbool;
-
-
-    private void SpawnRobot(string XZ, float distance)
+    private void SpawnRobot(string XZ, float distance, GameObject prefab)
     {
         float x = 0;
         float y = ARCamera.transform.position.y - 0.5f;
@@ -48,7 +44,7 @@ public class SpawnTheRobots : MonoBehaviour
 
         x += ARCamera.transform.position.x;
         Vector3 robotPosition = new Vector3(x, y, z);
-        GameObject robot = Instantiate(RobotPrefab, robotPosition, Quaternion.identity);
+        GameObject robot = Instantiate(prefab, robotPosition, Quaternion.identity);
         Robots.Add(robot);
 
     }
@@ -62,39 +58,53 @@ public class SpawnTheRobots : MonoBehaviour
         }
     }
 
-    private IEnumerator StartSpawning(float waitTime, int MaxNumofEnemies, int spawnAtATime)
+    private IEnumerator StartSpawningRobots(float waitTime, int MaxNumofEnemies, int spawnAtATime)
     {
         // NumofEnemis Sayısı kadar total robot spawnlar
         // spawnAtATime her waitTime da spawnlanacak robot sayısı
-        //Robots = new List<GameObject>();
         for (int i = 0; i < MaxNumofEnemies / spawnAtATime; i++)
         {
-            for (int j = 0; j < spawnAtATime; j++) // spawnAtATime = 4
+            for (int j = 0; j < spawnAtATime; j++)
             {
                 //get random position
                 var list = new List<string> { "PositiveX_PositiveZ", "NegativeX_PositiveZ", "NegativeX_NegativeZ", "PositiveX_NegativeZ" };
                 int randindex = Random.Range(0, list.Count);
 
-                SpawnRobot(list[randindex], Distance);
+                SpawnRobot(list[randindex], Distance, RobotPrefab);
             }
             yield return new WaitForSeconds(waitTime);
         }
-        //Robots.Clear(); //clears list
     }
 
-    public void StartSpawnCoroutine(int MaxNumofEnemies, float waitTime, int spawnAtATime)
+    private IEnumerator SpawnBoss(float waitTime, int bossIndex)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        var list = new List<string> { "PositiveX_PositiveZ", "NegativeX_PositiveZ", "NegativeX_NegativeZ", "PositiveX_NegativeZ" };
+        int randindex = Random.Range(0, list.Count);
+
+        SpawnRobot(list[randindex], Distance, BossPrefabs[bossIndex]);
+    }
+
+    public void StartSpawnCoroutineRobots(int MaxNumofEnemies, float waitTime, int spawnAtATime)
     {
         currentNumberOfEnemies = MaxNumofEnemies;
-        StartCoroutine(StartSpawning(waitTime, currentNumberOfEnemies, spawnAtATime));
+        StartCoroutine(StartSpawningRobots(waitTime, currentNumberOfEnemies, spawnAtATime));
+    }
+
+    public void StartSpawnCoroutineBoss(float waitTime, int bossIndex)
+    {
+        StartCoroutine(SpawnBoss(waitTime, bossIndex));
     }
 
     public static void KillTheRobotsCheatingButton()
     {
-        foreach (GameObject robot in Robots)
+        for (int i = 0; i < Robots.Count; i++)
         {
-            Destroy(robot);
+            Destroy(Robots[i].gameObject);
             ShootingScript.EnemiesKilled++;
         }
+        Robots.Clear();
     }
 
 }

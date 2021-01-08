@@ -8,17 +8,23 @@ public class GameControllerScript : MonoBehaviour
 {
     public GameObject Player;
     private static float HP;
-    private static int HealthAmount = 30;
+    private static int HealthAmount = 20;
 
     public GameObject HPBar;
     public Text LevelTxt;
     public Text EnemiesLeftText;
-    private bool levelchange = false;
+    public int RobotIncreasePercentage;
+    public int TotalLevelNumber;
     int currentLevel;
-    int currentBOSS;
+    int bossIndex = 0;
+    private int MaxNumofEnemies;
+    public static bool IsBossDead = false;
 
     public GameObject PanelGameOver;
     public GameObject PanelWinLevel;
+    public GameObject PanelWon;
+    public GameObject PanelMenu;
+    public string[] GameObjectTags;
 
     /***** SPAWN SCRIPT ******/
     public GameObject spawnScriptObj;
@@ -26,7 +32,7 @@ public class GameControllerScript : MonoBehaviour
     [Tooltip("Her Spawn arası bekleme süresi")]
     [SerializeField] private float waitTime = 3;
     [Tooltip("Toplam Enemy Sayısı")]
-    [SerializeField] private int MaxNumofEnemies;
+    [SerializeField] private int MaxNumofEnemiesFirst;
     [Tooltip("Her waitTime değeri arasındaki spawnlanacak enemy sayısı")]
     [SerializeField] private int spawnAtATime; // mesela üst üste 4 enemy doğacak sonra belli bir saniye bekleyecek
 
@@ -37,26 +43,29 @@ public class GameControllerScript : MonoBehaviour
     {
         //spawnScript Instance oluştur
         SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
+        MaxNumofEnemies = MaxNumofEnemiesFirst;
     }
 
-    public void StartTheGame()
+    public void StartTheLevel()
     {
-        //LOAD SYSTEM
-        if (!PlayerPrefs.HasKey("Level"))
-        {
-            currentLevel = 1;
-            saveLevel(1); //INITIALLY SET LEVEL TO 1 WHEN BEGINING OF THE GAME
-            Debug.Log("Level initially is set to 1");
-            LevelTxt.text = "Level 1";
-            currentBOSS = 1;
-            SpawnRobots();
+        ResumeGame();
+        ShootingScript.EnemiesKilled = 0;
+        PlayerScript.DamagedCount = 0;
+        PlayerScript.HP = 100;
 
+        //LOAD SYSTEM
+        if (!PlayerPrefs.HasKey("Level") || GetLevel() == 1)
+        {
+            currentLevel = SetLevel(1); //INITIALLY SET LEVEL TO 1 WHEN BEGINING OF THE GAME
+            LevelTxt.text = "Level 1";
+            SpawnRobots();
         }
         else
         {
-            currentLevel = getLevel();
-            Debug.Log("Level is set to " + currentLevel);
-
+            currentLevel = GetLevel();
+            LevelTxt.text = "Level " + currentLevel.ToString();
+            
+            LevelScaling();
             SpawnRobots();
         }
     }
@@ -69,14 +78,32 @@ public class GameControllerScript : MonoBehaviour
         /***** Handle Enemies Left Text FOR DEBUG ******/
         EnemiesLeftText.text = "ENEMIES LEFT " + (MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount).ToString();
 
-        /***** Handle Level Text ******/
-        LevelTxt.text = "Level " + currentLevel.ToString();
-
         /**** Kalan Enemy Sayısı Hesaplanıyor 0 dan küçükse win ekranı geliyor ya da boss *****/
         if ((MaxNumofEnemies - ShootingScript.EnemiesKilled - PlayerScript.DamagedCount) <= 0)
         {
-            SpawnBoss();
-            WinLevelMenu();
+            if(currentLevel == 1)
+            {
+                WinLevelMenu();
+            }
+            else
+            {
+                SpawnBoss();
+            }
+        }
+
+        if(IsBossDead)
+        {
+            IsBossDead = false;
+            if (currentLevel < TotalLevelNumber)
+            {
+                bossIndex++;
+                WinLevelMenu();
+            }
+            else
+            {
+                PanelWonMenu();
+            }
+
         }
 
         if (HP <= 0)
@@ -85,45 +112,31 @@ public class GameControllerScript : MonoBehaviour
         }
 
         HPBar.GetComponent<Image>().fillAmount = HP / 100;
+    }
 
-        /***** SPAWN ROBOTS *****/
-        if (levelchange)
-        {
-            SpawnRobots();
-        }
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 
     private void LevelScaling()
     {
-        /**** DAHA BITMEDI ****/
-        if (getLevel() == 2)
+        for (int i = 0; i < currentLevel - 1; i++)
         {
-            MaxNumofEnemies = 40;
-            currentBOSS = 2;
-        }
-        else if (getLevel() == 3)
-        {
-            MaxNumofEnemies = 50;
-            spawnAtATime = 5;
-            currentBOSS = 3;
-        }
-    }
-
-    private void SpawnBoss()
-    {
-        /**** DAHA BITMEDI ****/
-        if (currentBOSS == 1)
-        {
-            //Spawn BOSS1
-        }
-        else if (currentBOSS == 2)
-        {
-            //Spawn BOSS2
+            MaxNumofEnemies = MaxNumofEnemiesFirst;
+            MaxNumofEnemies = (int) (MaxNumofEnemies * ((float)(100 + RobotIncreasePercentage) / 100));
         }
     }
 
     private void GameOverMenu()
     {
+        currentLevel = SetLevel(1);
+        SetLevel(1);
         PanelGameOver.SetActive(true);
         //show Score
         //oyunu dondur
@@ -131,43 +144,73 @@ public class GameControllerScript : MonoBehaviour
 
     private void WinLevelMenu()
     {
+        PauseGame();
+        DestroyGameObjects();
+        SetLevel(++currentLevel);
         PanelWinLevel.SetActive(true);
-        //show Score
-        //oyunu dondur
+    }
+
+    private void PanelWonMenu()
+    {
+        currentLevel = SetLevel(1);
+        PanelWon.SetActive(true);
     }
 
     public void LevelContinueButton()
     {
         PanelWinLevel.SetActive(false);
-        levelchange = true;
-        currentLevel++;
-        saveLevel(currentLevel);
-        LevelScaling();
+        ResumeGame();
+        StartTheLevel();
         //oyunun time scale başlat
     }
 
-    public void LevelRetryButton()
+    public void PlayAgainButton()
     {
+        currentLevel = SetLevel(1);
+        bossIndex = 0;
+        DestroyGameObjects();
         PanelGameOver.SetActive(false);
-        PlayerScript.HP = 100;
-        SceneManager.LoadScene("Level"); // bu kötü bir yöntem
-        //Sahnedeki o andaki tüm robotlar potionlar yok edilmeli ( Eğer kalıyorsa )
-        //oyunun time scale başlat
+        ResumeGame();
+        StartTheLevel();
+    }
+
+    public void ResumeButton()
+    {
+        currentLevel = GetLevel();
+        bossIndex = currentLevel - 1;
+        DestroyGameObjects();
+        PanelMenu.SetActive(false);
+    }
+
+    private void DestroyGameObjects()
+    {
+        foreach (string tag in GameObjectTags)
+        {
+            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+            foreach (GameObject gameObject in gameObjects)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void SpawnRobots()
     {
-        levelchange = false;
-        SpawnScript.StartSpawnCoroutine(MaxNumofEnemies, waitTime, spawnAtATime);
+        SpawnScript.StartSpawnCoroutineRobots(MaxNumofEnemies, waitTime, spawnAtATime);
     }
 
-    public void saveLevel(int level)
+    private void SpawnBoss()
+    {
+        SpawnScript.StartSpawnCoroutineBoss(waitTime, bossIndex);
+    }
+
+    public int SetLevel(int level)
     {
         PlayerPrefs.SetInt("Level", level);
-        Debug.Log("Level:" + level);
+        return level;
     }
 
-    public int getLevel()
+    public int GetLevel()
     {
         return PlayerPrefs.GetInt("Level");
     }
@@ -184,6 +227,11 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     /**************** DEBUG FUNCTIONS ***********/
 
 
@@ -196,7 +244,7 @@ public class GameControllerScript : MonoBehaviour
     public void ResetLevelButton()
     {
         //FOR DEBUG
-        saveLevel(1);
+        SetLevel(1);
         currentLevel = 1;
     }
 }
