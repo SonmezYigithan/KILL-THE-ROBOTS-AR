@@ -62,17 +62,32 @@ public class SpawnTheRobots : MonoBehaviour
     {
         // NumofEnemis Sayısı kadar total robot spawnlar
         // spawnAtATime her waitTime da spawnlanacak robot sayısı
-        for (int i = 0; i < MaxNumofEnemies / spawnAtATime; i++)
-        {
-            for (int j = 0; j < spawnAtATime; j++)
-            {
-                //get random position
-                var list = new List<string> { "PositiveX_PositiveZ", "NegativeX_PositiveZ", "NegativeX_NegativeZ", "PositiveX_NegativeZ" };
-                int randindex = Random.Range(0, list.Count);
 
-                SpawnRobot(list[randindex], Distance, RobotPrefab);
-            }
+        int loopNum = MaxNumofEnemies / spawnAtATime;
+
+        int mod = MaxNumofEnemies % spawnAtATime;
+
+        for (int i = 0; i < loopNum; i++)
+        {
+            SpawnAtATimeFunc(spawnAtATime);
             yield return new WaitForSeconds(waitTime);
+        }
+
+        if(mod > 0)
+        {
+            SpawnAtATimeFunc(mod);
+        }
+    }
+
+    private void SpawnAtATimeFunc(int spawnAtATime)
+    {
+        for (int j = 0; j < spawnAtATime; j++)
+        {
+            //get random position
+            var list = new List<string> { "PositiveX_PositiveZ", "NegativeX_PositiveZ", "NegativeX_NegativeZ", "PositiveX_NegativeZ" };
+            int randindex = Random.Range(0, list.Count);
+
+            SpawnRobot(list[randindex], Distance, RobotPrefab);
         }
     }
 

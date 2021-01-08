@@ -4755,20 +4755,20 @@ MonoBehaviour:
   HPBar: {fileID: 1687247696}
   LevelTxt: {fileID: 1716152101}
   EnemiesLeftText: {fileID: 2029539389}
-  RobotIncreasePercentage: 0
-  TotalLevelNumber: 0
+  RobotIncreasePercentage: 25
+  TotalLevelNumber: 2
   PanelGameOver: {fileID: 1037744729}
   PanelWinLevel: {fileID: 1988557556}
-  PanelWon: {fileID: 0}
-  PanelMenu: {fileID: 0}
+  PanelWon: {fileID: 1469785374}
+  PanelMenu: {fileID: 791554134}
   GameObjectTags:
   - Enemy
   - Boss1
   - Health Potion
   spawnScriptObj: {fileID: 1374668218}
-  waitTime: 3
-  MaxNumofEnemiesFirst: 0
-  spawnAtATime: 5
+  waitTime: 1
+  MaxNumofEnemiesFirst: 10
+  spawnAtATime: 10
 --- !u!1 &1546707934
 GameObject:
   m_ObjectHideFlags: 0

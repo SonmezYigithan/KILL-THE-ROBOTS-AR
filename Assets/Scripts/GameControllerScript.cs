@@ -19,6 +19,7 @@ public class GameControllerScript : MonoBehaviour
     int bossIndex = 0;
     private int MaxNumofEnemies;
     public static bool IsBossDead = false;
+    private bool SpawnBossBool = true;
 
     public GameObject PanelGameOver;
     public GameObject PanelWinLevel;
@@ -36,8 +37,7 @@ public class GameControllerScript : MonoBehaviour
     [Tooltip("Her waitTime değeri arasındaki spawnlanacak enemy sayısı")]
     [SerializeField] private int spawnAtATime; // mesela üst üste 4 enemy doğacak sonra belli bir saniye bekleyecek
 
-    public static int EnemiesKilled;
-
+    public static int EnemiesKilled = 0;
 
 
     void Start()
@@ -88,22 +88,27 @@ public class GameControllerScript : MonoBehaviour
             }
             else
             {
-                SpawnBoss();
+                if(SpawnBossBool)
+                {
+                    SpawnBoss();
+                    SpawnBossBool = false;
+                }
             }
         }
 
         if (IsBossDead)
         {
+            SpawnBossBool = true;
             IsBossDead = false;
             if (currentLevel < TotalLevelNumber)
             {
-                bossIndex++;
+                //bossIndex++;
                 WinLevelMenu();
             }
-            else
-            {
-                PanelWonMenu();
-            }
+            //else
+            //{
+            //    PanelWonMenu();
+            //}
 
         }
 
@@ -136,6 +141,10 @@ public class GameControllerScript : MonoBehaviour
 
     private void GameOverMenu()
     {
+        EnemiesKilled = 0;
+        PlayerScript.DamagedCount = 0;
+        PlayerScript.HP = 100;
+        PauseGame();
         currentLevel = SetLevel(1);
         SetLevel(1);
         PanelGameOver.SetActive(true);
@@ -145,6 +154,9 @@ public class GameControllerScript : MonoBehaviour
 
     private void WinLevelMenu()
     {
+        EnemiesKilled = 0;
+        PlayerScript.DamagedCount = 0;
+        PlayerScript.HP = 100;
         PauseGame();
         DestroyGameObjects();
         SetLevel(++currentLevel);
@@ -153,7 +165,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void PanelWonMenu()
     {
-        currentLevel = SetLevel(1);
+        //currentLevel = SetLevel(1);
         PanelWon.SetActive(true);
     }
 

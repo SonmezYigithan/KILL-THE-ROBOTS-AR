@@ -19,9 +19,6 @@ public class Boss1Script : MonoBehaviour
 
     void Update()
     {
-
-
-        Debug.Log("BossHP" + Boss1_HP);
         if (Boss1_HP <= 0)
         {
             Debug.Log("Boss1 has Died");
@@ -29,5 +26,10 @@ public class Boss1Script : MonoBehaviour
             Destroy(gameObject);
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        GameControllerScript.IsBossDead = true;
     }
 }
