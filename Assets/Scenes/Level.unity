@@ -4313,6 +4313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RobotPrefab: {fileID: 8579005843006561465, guid: 6f4ff61581bd3814492360dbcafd5b24, type: 3}
   HealthPotionPrefab: {fileID: 1613715704516126227, guid: 130d81c944b023a4795a4b84e6fb2592, type: 3}
+  BossPrefabs: []
   ARCamera: {fileID: 1073411876}
   Distance: 3
   HealthPotionSpawnPercentage: 30
@@ -4787,11 +4788,19 @@ MonoBehaviour:
   HPBar: {fileID: 1687247696}
   LevelTxt: {fileID: 1716152101}
   EnemiesLeftText: {fileID: 2029539389}
+  RobotIncreasePercentage: 0
+  TotalLevelNumber: 0
   PanelGameOver: {fileID: 1037744729}
   PanelWinLevel: {fileID: 1988557556}
+  PanelWon: {fileID: 0}
+  PanelMenu: {fileID: 0}
+  GameObjectTags:
+  - Enemy
+  - Boss1
+  - Health Potion
   spawnScriptObj: {fileID: 1374668218}
   waitTime: 3
-  MaxNumofEnemies: 30
+  MaxNumofEnemiesFirst: 0
   spawnAtATime: 5
 --- !u!1 &1546707934
 GameObject:
