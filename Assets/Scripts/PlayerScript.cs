@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
     public static int DamageAmount = 10;
 
     public static int DamagedCount = 0;
+    public GameObject hitVignette;
+    private Animator hitVignetteAnimator;
 
     public GameObject ARcamera;
     private Vector3 tempARcamera;
@@ -20,6 +22,7 @@ public class PlayerScript : MonoBehaviour
     {
         StartCoroutine(getTempCameraLocation());
         animator = Pistol.GetComponent<Animator>();
+        hitVignetteAnimator = hitVignette.GetComponent<Animator>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,6 +30,8 @@ public class PlayerScript : MonoBehaviour
         //decrease HP when collide with something
         HP -= DamageAmount;
         DamagedCount++;
+        hitVignetteAnimator.Play("PlayerTakeHitVignette");
+        
     }
 
     private void Update()
