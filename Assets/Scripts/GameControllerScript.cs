@@ -27,6 +27,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject PanelWon;
     public GameObject PanelMenu;
     public GameObject PanelScan;
+    public GameObject PanelIngame;
     public string[] GameObjectTags;
 
     /***** SPAWN SCRIPT ******/
@@ -81,6 +82,19 @@ public class GameControllerScript : MonoBehaviour
 
     void Update()
     {
+        /****** HANDLE BACK BUTTON ******/
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PanelMenu.SetActive(true);
+            PanelGameOver.SetActive(false);
+            PanelWinLevel.SetActive(false);
+            PanelWon.SetActive(false);
+            PanelScan.SetActive(false);
+            PanelIngame.SetActive(false);
+            PauseGame();
+            DestroyGameObjects();
+        }
+
         /***** Handle Player HP Bar ******/
         HP = PlayerScript.HP;
 
@@ -101,7 +115,7 @@ public class GameControllerScript : MonoBehaviour
             }
             else
             {
-                if(SpawnBossBool)
+                if (SpawnBossBool)
                 {
                     MaxNumofEnemies++;
                     SpawnBoss();
