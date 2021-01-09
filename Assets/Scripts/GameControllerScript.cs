@@ -29,6 +29,7 @@ public class GameControllerScript : MonoBehaviour
     public GameObject PanelScan;
     public GameObject PanelIngame;
     public string[] GameObjectTags;
+    public GameObject pistol;
 
     /***** SPAWN SCRIPT ******/
     public GameObject spawnScriptObj;
@@ -91,6 +92,7 @@ public class GameControllerScript : MonoBehaviour
             PanelWon.SetActive(false);
             PanelScan.SetActive(false);
             PanelIngame.SetActive(false);
+            pistol.SetActive(false);
             PauseGame();
             DestroyGameObjects();
         }
