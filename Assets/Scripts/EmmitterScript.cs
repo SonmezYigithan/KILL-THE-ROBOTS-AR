@@ -15,6 +15,7 @@ public class EmmitterScript : MonoBehaviour
     private Animator animator;
 
     public GameObject bulletPrefab;
+    public GameObject ShootAudioObj;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class EmmitterScript : MonoBehaviour
     {
         Debug.LogWarning("PointerDOWN");
         animator.SetBool("isShooting", true);
+        AudioManager.playShootSound();
         Instantiate(bulletPrefab, transform.position, transform.rotation);
     }
 

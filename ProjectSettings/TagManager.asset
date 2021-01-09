@@ -19,8 +19,8 @@ TagManager:
   - 
   - NoCollide
   - Player
-  - 
-  - 
+  - Enemy
+  - Bullet
   - 
   - 
   - 
