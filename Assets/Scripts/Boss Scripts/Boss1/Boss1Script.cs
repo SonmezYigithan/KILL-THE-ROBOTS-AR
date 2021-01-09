@@ -34,13 +34,9 @@ public class Boss1Script : MonoBehaviour
             Debug.Log("Boss1 has Died");
             
             Destroy(gameObject);
+            GameControllerScript.IsBossDead = true;
         }
 
-    }
-
-    private void OnDestroy()
-    {
-        GameControllerScript.IsBossDead = true;
     }
 
     float CalculateHealth()

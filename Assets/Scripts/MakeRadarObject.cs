@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class MakeRadarObject : MonoBehaviour
 {
     public Image image;
-    public bool IsBoss;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +22,5 @@ public class MakeRadarObject : MonoBehaviour
     private void OnDestroy()
     {
         Radar.RemoveRadarObject(this.gameObject);
-        if(IsBoss)
-        {
-            GameControllerScript.IsBossDead = true;
-        }
     }
 }
