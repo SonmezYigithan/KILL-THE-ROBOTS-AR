@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     private GameObject Player;
     public float speed = 5f;
     public float HP;
+    SpawnTheRobots SpawnTheRobots;
 
     //HP BAR
     public float maxHP;
@@ -20,6 +21,7 @@ public class EnemyScript : MonoBehaviour
     {
         //find gameobject with tag player
         Player = GameObject.FindGameObjectWithTag("Player");
+        SpawnTheRobots = GameObject.FindGameObjectWithTag("SpawnEdge").GetComponent<SpawnTheRobots>();
     }
 
     void Update()
@@ -28,6 +30,7 @@ public class EnemyScript : MonoBehaviour
         {
             Destroy(gameObject);
             GameControllerScript.EnemiesKilled++;
+            SpawnTheRobots.SpawnHealthPotion(transform);
         }
 
         MoveTowardsToThePlayer();
