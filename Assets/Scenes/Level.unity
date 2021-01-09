@@ -566,7 +566,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.18
+  m_Radius: 0.72
   m_Height: 0.63
   m_Direction: 1
   m_Center: {x: -0.01, y: 0, z: 0}
@@ -3269,7 +3269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4129,7 +4129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4448,7 +4448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5012fc9faee58614b947d038df0f34ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RobotPrefab: {fileID: 8579005843006561465, guid: 6f4ff61581bd3814492360dbcafd5b24, type: 3}
+  RobotPrefab: {fileID: 2627749161569013294, guid: 9aef0fd8e54cec644844d29a81a50517, type: 3}
   HealthPotionPrefab: {fileID: 1613715704516126227, guid: 130d81c944b023a4795a4b84e6fb2592, type: 3}
   BossPrefabs:
   - {fileID: 8906096095610722908, guid: 1a941d92e7902af42b66ecadfcc5936b, type: 3}
@@ -4914,6 +4914,7 @@ MonoBehaviour:
   LevelTxt: {fileID: 1716152101}
   EnemiesLeftText: {fileID: 2029539389}
   RobotIncreasePercentage: 30
+  BossHPIncreasePercentage: 10
   TotalLevelNumber: 2
   PanelGameOver: {fileID: 1037744729}
   PanelWinLevel: {fileID: 1988557556}
@@ -4925,9 +4926,9 @@ MonoBehaviour:
   - Boss1
   - Health Potion
   spawnScriptObj: {fileID: 1374668218}
-  waitTime: 1
+  waitTime: 2
   MaxNumofEnemiesFirst: 10
-  spawnAtATime: 10
+  spawnAtATime: 5
 --- !u!1 &1546707934
 GameObject:
   m_ObjectHideFlags: 0
@@ -5684,7 +5685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 5.19
       objectReference: {fileID: 0}
     - target: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7324,7 +7325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
       propertyPath: m_LocalPosition.y
