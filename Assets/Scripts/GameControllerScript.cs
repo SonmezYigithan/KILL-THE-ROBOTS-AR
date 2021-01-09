@@ -14,6 +14,7 @@ public class GameControllerScript : MonoBehaviour
     public Text LevelTxt;
     public Text EnemiesLeftText;
     public int RobotIncreasePercentage;
+    public int BossHPIncreasePercentage;
     public int TotalLevelNumber;
     int currentLevel;
     int bossIndex = 0;
@@ -116,6 +117,7 @@ public class GameControllerScript : MonoBehaviour
             MaxNumofEnemies--;
             SpawnBossBool = true;
             IsBossDead = false;
+            BossHPScaling();
             WinLevelMenu();
             //if (currentLevel < TotalLevelNumber)
             //{
@@ -156,6 +158,14 @@ public class GameControllerScript : MonoBehaviour
         }
     }
 
+    private void BossHPScaling()
+    {
+        Boss1Script.Boss1_HP = Boss1Script.Boss1_HP_First;
+        for (int i = 1; i < currentLevel; i++)
+        {
+            Boss1Script.Boss1_HP = (int)(Boss1Script.Boss1_HP * ((float)(100 + BossHPIncreasePercentage) / 100));
+        }
+    }
     private void GameOverMenu()
     {
         PauseGame();
