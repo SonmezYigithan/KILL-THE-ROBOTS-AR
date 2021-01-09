@@ -27,8 +27,11 @@ public class EnemyScript : MonoBehaviour
         if(HP <= 0)
         {
             Destroy(gameObject);
+            GameControllerScript.EnemiesKilled++;
         }
+
         MoveTowardsToThePlayer();
+
         if (healthBarUI)
         {
             EnemyHealthBarHandle();

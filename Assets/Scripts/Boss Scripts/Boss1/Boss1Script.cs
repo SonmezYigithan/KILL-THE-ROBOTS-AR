@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss1Script : MonoBehaviour
 {
@@ -9,16 +10,25 @@ public class Boss1Script : MonoBehaviour
     // belli süre aralıklarıyla ataş edecek 
     // random animasyonlar olacak
 
-    public static int Boss1_HP;
+    public static float Boss1_HP = 200;
 
+    //HP BAR
+    private float maxHP;
+    public GameObject healthBarUI;
+    public Slider slider;
 
     void Start()
     {
-        Boss1_HP = 200;
+        maxHP = Boss1_HP;
     }
 
     void Update()
     {
+        if (healthBarUI)
+        {
+            EnemyHealthBarHandle();
+        }
+
         if (Boss1_HP <= 0)
         {
             Debug.Log("Boss1 has Died");
@@ -31,5 +41,28 @@ public class Boss1Script : MonoBehaviour
     private void OnDestroy()
     {
         GameControllerScript.IsBossDead = true;
+    }
+
+    float CalculateHealth()
+    {
+        return Boss1_HP / maxHP;
+    }
+
+    void EnemyHealthBarHandle()
+    {
+        slider.value = CalculateHealth();
+
+        if (Boss1_HP < maxHP)
+        {
+            healthBarUI.SetActive(true);
+        }
+        if (Boss1_HP <= 0)
+        {
+            Destroy(gameObject);
+        }
+        if (Boss1_HP > maxHP)
+        {
+            Boss1_HP = maxHP;
+        }
     }
 }
