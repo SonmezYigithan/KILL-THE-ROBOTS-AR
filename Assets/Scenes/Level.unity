@@ -936,7 +936,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.7, y: -828}
+  m_AnchoredPosition: {x: -5.7, y: -428}
   m_SizeDelta: {x: 221.8183, y: 49.856964}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505536259
@@ -984,7 +984,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1470681854}
         m_TargetAssemblyTypeName: GameControllerScript, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: ResumeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1893,6 +1893,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1953624411}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &694966529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2476,6 +2488,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1470681854}
+        m_TargetAssemblyTypeName: GameControllerScript, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &753240607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2604,6 +2628,7 @@ GameObject:
   - component: {fileID: 791554135}
   - component: {fileID: 791554137}
   - component: {fileID: 791554136}
+  - component: {fileID: 791554138}
   m_Layer: 5
   m_Name: PanelMenu
   m_TagString: Untagged
@@ -2673,6 +2698,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791554134}
   m_CullTransparentMesh: 0
+--- !u!114 &791554138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791554134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa6d6224f4aa4084bbcbf1ec48bcfcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonResume: {fileID: 505536259}
+  ButtonTutorial: {fileID: 1421658652}
+  ButtonQuit: {fileID: 551904448}
+  TextPlay: {fileID: 1946593950}
 --- !u!1 &810385024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4529,7 +4570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.7, y: -428}
+  m_AnchoredPosition: {x: -5.7, y: -828}
   m_SizeDelta: {x: 221.8183, y: 49.856964}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1421658652
@@ -4872,12 +4913,13 @@ MonoBehaviour:
   HPBar: {fileID: 1687247696}
   LevelTxt: {fileID: 1716152101}
   EnemiesLeftText: {fileID: 2029539389}
-  RobotIncreasePercentage: 25
+  RobotIncreasePercentage: 30
   TotalLevelNumber: 2
   PanelGameOver: {fileID: 1037744729}
   PanelWinLevel: {fileID: 1988557556}
   PanelWon: {fileID: 1469785374}
   PanelMenu: {fileID: 791554134}
+  PanelScan: {fileID: 672466506}
   GameObjectTags:
   - Enemy
   - Boss1
@@ -5801,6 +5843,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1953624411}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1865930304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5851,7 +5905,7 @@ GameObject:
   - component: {fileID: 1946593951}
   - component: {fileID: 1946593950}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5909,7 +5963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PLAY
+  m_Text: NEW GAME
 --- !u!222 &1946593951
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6562,7 +6616,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1037744729}
+      - m_Target: {fileID: 1953624411}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -6585,6 +6639,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1037744729}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1470681854}
+        m_TargetAssemblyTypeName: GameControllerScript, Assembly-CSharp
+        m_MethodName: MenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2016790786
 MonoBehaviour:
