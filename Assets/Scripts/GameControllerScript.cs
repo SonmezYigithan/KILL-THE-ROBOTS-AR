@@ -95,6 +95,7 @@ public class GameControllerScript : MonoBehaviour
         {
             if (currentLevel == 1)
             {
+                Debug.Log("@@@@@LEVEL1");
                 WinLevelMenu();
             }
             else
@@ -110,6 +111,8 @@ public class GameControllerScript : MonoBehaviour
 
         if (IsBossDead)
         {
+            Debug.Log("MaxNumofEnemies" + MaxNumofEnemies + "EnemiesKilled " + EnemiesKilled + "DamagedCount " + PlayerScript.DamagedCount);
+            Debug.Log("@@@@@isBossDead" + SpawnBossBool + IsBossDead);
             MaxNumofEnemies--;
             SpawnBossBool = true;
             IsBossDead = false;

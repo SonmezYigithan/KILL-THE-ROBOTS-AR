@@ -10,7 +10,7 @@ public class Boss1Script : MonoBehaviour
     // belli süre aralıklarıyla ataş edecek 
     // random animasyonlar olacak
 
-    public static float Boss1_HP = 200;
+    public static float Boss1_HP = 100;
 
     //HP BAR
     private float maxHP;
@@ -34,7 +34,6 @@ public class Boss1Script : MonoBehaviour
             Debug.Log("Boss1 has Died");
             
             Destroy(gameObject);
-            GameControllerScript.IsBossDead = true;
         }
 
     }
@@ -60,5 +59,12 @@ public class Boss1Script : MonoBehaviour
         {
             Boss1_HP = maxHP;
         }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Boss OnDestroy"+ Boss1_HP);
+        Boss1_HP = 100;
+        GameControllerScript.IsBossDead = true;
     }
 }
