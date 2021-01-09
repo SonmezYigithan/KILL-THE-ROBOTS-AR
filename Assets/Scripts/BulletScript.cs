@@ -37,28 +37,23 @@ public class BulletScript : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         //çarptığı şeye ulaş ve canını azalt
-        if (collision.transform.tag == "enemy")
+        if (other.transform.tag == "Enemy")
         {
-            collision.transform.gameObject.GetComponent<EnemyScript>().HP -= DamageToRobot;
-            
-            Destroy(collision.transform.gameObject);
-
-            GameControllerScript.EnemiesKilled++;
-            
+            other.transform.gameObject.GetComponent<EnemyScript>().HP -= DamageToRobot;
 
             //*****EXPLOSION ANIMATON****
             //Instantiate(smoke, collision.transform.position, Quaternion.LookRotation(ARCamera.transform));
         }
-        else if (collision.transform.tag == "Health Potion")
+        else if (other.transform.tag == "Health Potion")
         {
-            Destroy(collision.transform.gameObject);
+            Destroy(other.transform.gameObject);
 
             GameControllerScript.HitHealthPotion();
         }
-        else if (collision.transform.tag == "Boss1")
+        else if (other.transform.tag == "Boss1")
         {
             Boss1Script.Boss1_HP -= DamageToBoss;
         }
