@@ -61,10 +61,4 @@ public class Boss1Script : MonoBehaviour
             Boss1_HP = maxHP;
         }
     }
-
-    private void OnDestroy()
-    {
-        Debug.Log("Boss OnDestroy"+ Boss1_HP);
-        GameControllerScript.IsBossDead = true;
-    }
 }

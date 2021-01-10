@@ -19,7 +19,6 @@ public class GameControllerScript : MonoBehaviour
     int currentLevel;
     int bossIndex = 0;
     private int MaxNumofEnemies;
-    public static bool IsBossDead = false;
     private bool SpawnBossBool = true;
 
     public GameObject PanelGameOver;
@@ -131,19 +130,8 @@ public class GameControllerScript : MonoBehaviour
         {
             MaxNumofEnemies--;
             SpawnBossBool = true;
-            IsBossDead = false;
             BossHPScaling();
             WinLevelMenu();
-            //if (currentLevel < TotalLevelNumber)
-            //{
-            //bossIndex++;
-            //WinLevelMenu();
-            //}
-            //else
-            //{
-            //    PanelWonMenu();
-            //}
-
         }
 
         if (HP <= 0 && Time.timeScale == 1)
@@ -185,7 +173,6 @@ public class GameControllerScript : MonoBehaviour
     {
         PauseGame();
         //currentLevel = SetLevel(1);
-        IsBossDead = false;
         PanelGameOver.SetActive(true);
     }
 
@@ -196,14 +183,12 @@ public class GameControllerScript : MonoBehaviour
         PlayerScript.DamagedCount = 0;
         PlayerScript.HP = 100;
         SetLevel(++currentLevel);
-        IsBossDead = false;
         PanelWinLevel.SetActive(true);
     }
 
     private void PanelWonMenu()
     {
         //currentLevel = SetLevel(1);
-        IsBossDead = false;
         PanelWon.SetActive(true);
     }
 
@@ -211,7 +196,6 @@ public class GameControllerScript : MonoBehaviour
     {
         PanelWinLevel.SetActive(false);
         ResumeGame();
-        IsBossDead = false;
         StartTheLevel();
     }
 
@@ -226,8 +210,6 @@ public class GameControllerScript : MonoBehaviour
         Boss1Script.Boss1_HP = 500;
         PanelGameOver.SetActive(false);
         ResumeGame();
-        
-        IsBossDead = false;
         StartTheLevel();
     }
 
@@ -237,12 +219,10 @@ public class GameControllerScript : MonoBehaviour
         //bossIndex = currentLevel - 1;
         PanelMenu.SetActive(false);
         PanelScan.SetActive(true);
-        IsBossDead = false;
     }
 
     public void MenuButton()
     {
-        IsBossDead = false;
         DestroyGameObjects();
     }
 
@@ -256,8 +236,6 @@ public class GameControllerScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-        IsBossDead = false;
     }
 
     private void SpawnRobots()
