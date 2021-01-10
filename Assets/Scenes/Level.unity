@@ -631,7 +631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &223701036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1456,7 +1456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &577252198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4490,11 +4490,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RobotPrefab: {fileID: 2627749161569013294, guid: 9aef0fd8e54cec644844d29a81a50517, type: 3}
-  HealthPotionPrefab: {fileID: 1613715704516126227, guid: 457323f0993bac649aa86667d8ecd747, type: 3}
+  HealthPotionPrefab: {fileID: 7732169855907881437, guid: e9ad0b209a2514143b7eb1ab1e70a44b, type: 3}
   BossPrefabs:
   - {fileID: 8906096095610722908, guid: 1a941d92e7902af42b66ecadfcc5936b, type: 3}
   ARCamera: {fileID: 1073411876}
-  Distance: 3
+  Distance: 5
   HealthPotionSpawnPercentage: 30
 --- !u!1 &1375262054
 GameObject:
@@ -4554,7 +4554,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: c465f3a8b829eb845866368bba36d1ea, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -4609,7 +4609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1401140644
@@ -5048,9 +5048,9 @@ MonoBehaviour:
   - Health Potion
   pistol: {fileID: 2093346533}
   spawnScriptObj: {fileID: 1374668218}
-  waitTime: 2
+  waitTime: 3
   MaxNumofEnemiesFirst: 10
-  spawnAtATime: 5
+  spawnAtATime: 2
 --- !u!1 &1546707934
 GameObject:
   m_ObjectHideFlags: 0
@@ -5635,7 +5635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPosition: {fileID: 1073411881}
-  MapScale: 40
+  MapScale: 25
 --- !u!1 &1743349488
 GameObject:
   m_ObjectHideFlags: 0
@@ -6477,7 +6477,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1985173193
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6964,7 +6964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 91}
+  m_AnchoredPosition: {x: 0, y: 211}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2070546418
