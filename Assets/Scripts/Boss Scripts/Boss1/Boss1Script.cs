@@ -65,7 +65,6 @@ public class Boss1Script : MonoBehaviour
     private void OnDestroy()
     {
         Debug.Log("Boss OnDestroy"+ Boss1_HP);
-        Boss1_HP = 100;
         GameControllerScript.IsBossDead = true;
     }
 }
