@@ -19,7 +19,6 @@ public class GameControllerScript : MonoBehaviour
     int currentLevel;
     int bossIndex = 0;
     private int MaxNumofEnemies;
-    public static bool IsBossDead = false;
     private bool SpawnBossBool = true;
 
     public GameObject PanelGameOver;
@@ -58,6 +57,7 @@ public class GameControllerScript : MonoBehaviour
 
     public void StartTheLevel()
     {
+        SpawnBossBool = true;
         DestroyGameObjects();
         ResumeGame();
         EnemiesKilled = 0;
@@ -69,6 +69,7 @@ public class GameControllerScript : MonoBehaviour
         {
             currentLevel = SetLevel(1); //INITIALLY SET LEVEL TO 1 WHEN BEGINING OF THE GAME
             LevelTxt.text = "Level 1";
+            LevelScaling();
             SpawnRobots();
         }
         else
@@ -125,23 +126,12 @@ public class GameControllerScript : MonoBehaviour
             }
         }
 
-        if (IsBossDead)
+        if (Boss1Script.Boss1_HP <= 0)
         {
             MaxNumofEnemies--;
             SpawnBossBool = true;
-            IsBossDead = false;
             BossHPScaling();
             WinLevelMenu();
-            //if (currentLevel < TotalLevelNumber)
-            //{
-            //bossIndex++;
-            //WinLevelMenu();
-            //}
-            //else
-            //{
-            //    PanelWonMenu();
-            //}
-
         }
 
         if (HP <= 0 && Time.timeScale == 1)
@@ -211,11 +201,13 @@ public class GameControllerScript : MonoBehaviour
 
     public void PlayAgainButton()
     {
+        /*************************** DEVAM ETMEK IÇIN REKLAM IZLE ***************************/
         //currentLevel = SetLevel(1);
         //bossIndex = 0;
         EnemiesKilled = 0;
         PlayerScript.DamagedCount = 0;
         PlayerScript.HP = 100;
+        Boss1Script.Boss1_HP = 500;
         PanelGameOver.SetActive(false);
         ResumeGame();
         StartTheLevel();
