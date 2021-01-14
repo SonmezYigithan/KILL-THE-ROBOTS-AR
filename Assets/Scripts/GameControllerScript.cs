@@ -54,6 +54,11 @@ public class GameControllerScript : MonoBehaviour
     public void NewGame()
     {
         currentLevel = SetLevel(1);
+        EnemiesKilled = 0;
+        PlayerScript.DamagedCount = 0;
+        PlayerScript.HP = 100;
+        Boss1Script.Boss1_HP = 500;
+        DestroyGameObjects();
         DestroyPortal();
         PanelScan.SetActive(true);
     }
@@ -97,8 +102,18 @@ public class GameControllerScript : MonoBehaviour
             PanelScan.SetActive(false);
             PanelIngame.SetActive(false);
             pistol.SetActive(false);
-            PauseGame();
+
+            EnemiesKilled = 0;
+            PlayerScript.DamagedCount = 0;
+            PlayerScript.HP = 100;
+            Boss1Script.Boss1_HP = 500;
+            DestroyPortal();
+
+            SpawnScript.StopCoroutines();
+
             DestroyGameObjects();
+            PauseGame();
+            
         }
 
         /***** Handle Player HP Bar ******/

@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class TapToPlace : MonoBehaviour
 {
@@ -15,15 +18,25 @@ public class TapToPlace : MonoBehaviour
     public GameObject GameController;
     private GameControllerScript script;
 
+    public GameObject SpawnEdges;
+
+    private ARRaycastManager rayManager;
+
+    public GameObject tutorialwaitTxt;
+    public GameObject tutorialTxt;
+
     private void Start()
     {
         placementIndicator = FindObjectOfType<PlacementIndicator>();
         script = GameController.GetComponent<GameControllerScript>();
+
+
     }
 
     private void Update()
     {
-        if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+
+        if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             GameObject obj = Instantiate(objectToSpawn,
                 placementIndicator.transform.position, placementIndicator.transform.rotation);
@@ -32,11 +45,13 @@ public class TapToPlace : MonoBehaviour
             //objectSpawnerı kapat
             //placement indicator kapat
             //taptoplace Panel Kapat
-
+            SpawnEdges.GetComponent<SpawnTheRobots>().Portal = obj;
             
             ObjectSpawner.SetActive(false);
             PlacementIndicator.SetActive(false);
             TapToPlacePanel.SetActive(false);
+            tutorialwaitTxt.SetActive(false);
+            tutorialTxt.SetActive(false);
 
             Pistol.SetActive(true);
             IngamePanel.SetActive(true);

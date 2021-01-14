@@ -1786,7 +1786,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: c465f3a8b829eb845866368bba36d1ea, type: 3}
     m_FontSize: 120
     m_FontStyle: 0
     m_BestFit: 0
@@ -4445,8 +4445,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 120
+    m_Font: {fileID: 12800000, guid: c465f3a8b829eb845866368bba36d1ea, type: 3}
+    m_FontSize: 140
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4802,7 +4802,8 @@ MonoBehaviour:
   HealthPotionPrefab: {fileID: 7732169855907881437, guid: e9ad0b209a2514143b7eb1ab1e70a44b, type: 3}
   BossPrefabs:
   - {fileID: 8906096095610722908, guid: 1a941d92e7902af42b66ecadfcc5936b, type: 3}
-  ARCamera: {fileID: 1073411876}
+  Portal: {fileID: 0}
+  ARCamera: {fileID: 0}
   Distance: 5
   HealthPotionSpawnPercentage: 30
 --- !u!1 &1375262054
@@ -5319,6 +5320,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1249005895}
+  - {fileID: 1819937822}
   m_Father: {fileID: 1433379102}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5507,7 +5509,7 @@ MonoBehaviour:
   pistol: {fileID: 2093346533}
   spawnScriptObj: {fileID: 1374668218}
   waitTime: 3
-  MaxNumofEnemiesFirst: 10
+  MaxNumofEnemiesFirst: 30
   spawnAtATime: 2
 --- !u!1 &1546707934
 GameObject:
@@ -5792,6 +5794,9 @@ MonoBehaviour:
   Pistol: {fileID: 2093346533}
   TapToPlacePanel: {fileID: 1464466895}
   GameController: {fileID: 1470681852}
+  SpawnEdges: {fileID: 1374668218}
+  tutorialwaitTxt: {fileID: 1819937821}
+  tutorialTxt: {fileID: 1249005894}
 --- !u!4 &1605853833
 Transform:
   m_ObjectHideFlags: 0
@@ -6625,6 +6630,85 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3936540008137335839, guid: 59fd28ba36a425b439d14dae86e245b5, type: 3}
   m_PrefabInstance: {fileID: 1796510466}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1819937821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819937822}
+  - component: {fileID: 1819937824}
+  - component: {fileID: 1819937823}
+  m_Layer: 5
+  m_Name: TextTutorial (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1819937822
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819937821}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3007032, y: 1.3007032, z: 1.3007032}
+  m_Children: []
+  m_Father: {fileID: 1464466896}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -1496}
+  m_SizeDelta: {x: 1322.3616, y: 615.6842}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1819937823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819937821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: c465f3a8b829eb845866368bba36d1ea, type: 3}
+    m_FontSize: 150
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1.3
+  m_Text: Wait Until You See The Portal
+--- !u!222 &1819937824
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819937821}
+  m_CullTransparentMesh: 0
 --- !u!1 &1865930300
 GameObject:
   m_ObjectHideFlags: 0

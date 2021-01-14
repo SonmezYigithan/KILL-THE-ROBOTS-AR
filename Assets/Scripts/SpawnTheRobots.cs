@@ -8,7 +8,8 @@ public class SpawnTheRobots : MonoBehaviour
     [SerializeField] GameObject RobotPrefab;
     [SerializeField] GameObject HealthPotionPrefab;
     public GameObject[] BossPrefabs;
-    [SerializeField] GameObject ARCamera;
+    public GameObject Portal;
+    public GameObject ARCamera;
     [SerializeField] float Distance;
     public static int currentNumberOfEnemies;
     public static List<GameObject> Robots = new List<GameObject>();
@@ -24,25 +25,25 @@ public class SpawnTheRobots : MonoBehaviour
         if (XZ == "PositiveX_PositiveZ")
         {
             x = Random.Range(0.0f, 3.0f);
-            z = ARCamera.transform.position.z + (distance - x);
+            z = Portal.transform.position.z + (distance - x);
         }
         else if (XZ == "NegativeX_PositiveZ")
         {
             x = Random.Range(-3.0f, 0.0f);
-            z = ARCamera.transform.position.z + (distance + x);
+            z = Portal.transform.position.z + (distance + x);
         }
         else if (XZ == "NegativeX_NegativeZ")
         {
             x = Random.Range(-3.0f, 0.0f);
-            z = ARCamera.transform.position.z + ((distance * -1) - x);
+            z = Portal.transform.position.z + ((distance * -1) - x);
         }
         else if (XZ == "PositiveX_NegativeZ")
         {
             x = Random.Range(0.0f, 3.0f);
-            z = ARCamera.transform.position.z + ((distance * -1) + x);
+            z = Portal.transform.position.z + ((distance * -1) + x);
         }
 
-        x += ARCamera.transform.position.x;
+        x += Portal.transform.position.x;
         Vector3 robotPosition = new Vector3(x, y, z);
         GameObject robot = Instantiate(prefab, robotPosition, Quaternion.identity);
         Robots.Add(robot);
@@ -120,6 +121,11 @@ public class SpawnTheRobots : MonoBehaviour
             GameControllerScript.EnemiesKilled++;
         }
         Robots.Clear();
+    }
+
+    public void StopCoroutines()
+    {
+        StopCoroutine("StartSpawningRobots");
     }
 
 }
