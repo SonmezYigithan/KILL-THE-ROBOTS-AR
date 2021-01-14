@@ -46,6 +46,7 @@ MonoBehaviour:
   arCamera: {fileID: 0}
   Pistol: {fileID: 7678110091261769483}
   bulletPrefab: {fileID: 2897494390110388638, guid: 0e8f21c86efd4f94aab30b72c2e1b45f, type: 3}
+  ShootAudioObj: {fileID: 0}
 --- !u!1 &2355030938145049595
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +175,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

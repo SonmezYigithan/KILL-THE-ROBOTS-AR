@@ -48,11 +48,14 @@ public class GameControllerScript : MonoBehaviour
         //spawnScript Instance oluştur
         SpawnScript = spawnScriptObj.GetComponent<SpawnTheRobots>();
         MaxNumofEnemies = MaxNumofEnemiesFirst;
+
     }
 
     public void NewGame()
     {
         currentLevel = SetLevel(1);
+        DestroyPortal();
+        PanelScan.SetActive(true);
     }
 
     public void StartTheLevel()
@@ -219,6 +222,8 @@ public class GameControllerScript : MonoBehaviour
         //bossIndex = currentLevel - 1;
         PanelMenu.SetActive(false);
         PanelScan.SetActive(true);
+        DestroyPortal();
+        PanelScan.SetActive(true);
     }
 
     public void MenuButton()
@@ -274,6 +279,16 @@ public class GameControllerScript : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    private void DestroyPortal()
+    {
+        //search
+        GameObject portal = GameObject.FindGameObjectWithTag("Portal");
+        if (portal)
+        {
+            Destroy(portal);
+        }
     }
 
     /**************** DEBUG FUNCTIONS ***********/
