@@ -93,7 +93,7 @@ public class GameControllerScript : MonoBehaviour
     void Update()
     {
         /****** HANDLE BACK BUTTON ******/
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             PanelMenu.SetActive(true);
             PanelGameOver.SetActive(false);
@@ -114,7 +114,7 @@ public class GameControllerScript : MonoBehaviour
             DestroyGameObjects();
             PauseGame();
             
-        }
+        }*/
 
         /***** Handle Player HP Bar ******/
         HP = PlayerScript.HP;
@@ -148,6 +148,7 @@ public class GameControllerScript : MonoBehaviour
         {
             MaxNumofEnemies--;
             SpawnBossBool = true;
+            DestroyGameObjects();
             BossHPScaling();
             WinLevelMenu();
         }

@@ -25,17 +25,16 @@ public class TapToPlace : MonoBehaviour
     public GameObject tutorialwaitTxt;
     public GameObject tutorialTxt;
 
+
     private void Start()
     {
         placementIndicator = FindObjectOfType<PlacementIndicator>();
         script = GameController.GetComponent<GameControllerScript>();
 
-
     }
 
     private void Update()
     {
-
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
         {
             GameObject obj = Instantiate(objectToSpawn,
@@ -46,7 +45,7 @@ public class TapToPlace : MonoBehaviour
             //placement indicator kapat
             //taptoplace Panel Kapat
             SpawnEdges.GetComponent<SpawnTheRobots>().Portal = obj;
-            
+
             ObjectSpawner.SetActive(false);
             PlacementIndicator.SetActive(false);
             TapToPlacePanel.SetActive(false);

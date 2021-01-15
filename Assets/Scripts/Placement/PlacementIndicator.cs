@@ -10,17 +10,22 @@ public class PlacementIndicator : MonoBehaviour
     private ARRaycastManager rayManager;
     public GameObject visual;
 
+    public GameObject tutorialwaitTxt;
+    public GameObject tutorialTxt;
+
     void Awake()
     {
         rayManager = FindObjectOfType<ARRaycastManager>();
         if (visual)
         {
             visual.SetActive(false);
+            tutorialwaitTxt.SetActive(true);
         }
         else
         {
             visual = Instantiate(visual.transform.gameObject, transform.position, transform.rotation);
             visual.SetActive(false);
+            tutorialwaitTxt.SetActive(true);
         }
     }
 
@@ -31,11 +36,17 @@ public class PlacementIndicator : MonoBehaviour
         
         if (hits.Count > 0)
         {
+            tutorialwaitTxt.SetActive(false);
             transform.position = hits[0].pose.position;
             transform.rotation = hits[0].pose.rotation;
 
-            if(!visual.activeInHierarchy)
+            tutorialTxt.SetActive(true);
+
+            if (!visual.activeInHierarchy)
+            {
                 visual.SetActive(true);
+            }
+                
 
         }
     }
